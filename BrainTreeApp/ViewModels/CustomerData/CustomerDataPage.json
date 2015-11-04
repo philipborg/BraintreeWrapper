@@ -1,0 +1,45 @@
+{
+    "Html": "",
+    "Address": {
+        "StreetAddress$": "",
+        "ExtendedAddress$": "",
+        "Locality$": "",
+        "Region$": "",
+        "PostalCode$": "",
+        "CountryName$": "",
+        "CountryCodeAlpha2$": "",
+        "CountryCodeAlpha3$": "",
+        "CountryCodeNumeric$": ""
+    },
+    "Customer": {
+        "FirstName$": "",
+        "LastName$": "",
+        "Phone$": "",
+        "Email$": "",
+        "Fax$": ""
+    },
+    "Company": {
+        "CompanyName$": ""
+    },
+    "CreditCard": {
+        "CardNumber$": "",
+        "ExpiryMonth$": "",
+        "ExpiryYear$": "",
+        "SecurityNumber$": ""
+    },
+    "CustomerLabel": {
+        "FirstNameName$": "",
+        "LastNameName$": "",
+        "EmailName$": "",
+        "Address1Name$": "",
+        "ZipPostalCodeName$": "",
+        "TownName$": "",
+        "StateName$": "",
+        "ProvinceName$": ""
+    },
+    "Errors": [
+        {
+            "Error": ""
+        }
+    ]
+}

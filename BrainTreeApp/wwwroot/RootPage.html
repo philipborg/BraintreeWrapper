@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Basket</title>
+    <script src="/sys/webcomponentsjs/webcomponents.js"></script>
+    <script>
+        window.Polymer = window.Polymer || {};
+        window.Polymer.dom = "shadow";
+    </script>
+    <link rel="import" href="/sys/polymer/polymer.html" />
+    <link rel="import" href="/sys/starcounter.html" />
+    <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html" />
+    <link rel="import" href="/sys/imported-template/imported-template.html" />
+    <link rel="import" href="/sys/dom-bind-notifier/dom-bind-notifier.html" />
+    <link rel="import" href="/sys/starcounter-include/starcounter-include.html" />
+    <link rel="import" href="/sys/bootstrap.html" />
+</head>
+<body>
+    <template id="root" is="dom-bind">
+        <div id="body" class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <h4>PAYMENT DETAILS - CREDIT CARD</h4>
+                        <div id="erros">
+                            <template is="dom-repeat" items="{{model.Errors}}">
+                                <div style="color:#ff0000;font-weight:bold;">Error: <span>{{item.Error}}</span></div>
+                            </template>
+                        </div>
+                        <div id="success">
+                            <template is="dom-if" if="{{model.Success}}" r restamp>
+                                <div style="color:#0A3200;font-weight:bold;">Success: <span>{{model.Success}}</span></div>
+                            </template>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="payment-data">
+                        <div id="payment-data">
+                            <div class="form-group">
+                                <label for="credit-card-information" style="text-transform: uppercase;">
+                                    <i class="pull-left glyphicon glyphicon-shopping-cart" style="margin-right:5px;padding-top:3px;"></i>
+                                    <strong>
+                                        Payment amount:
+                                    </strong>
+                                </label>
+                                <label for="credit-card-information">{{model.Amount}}</label>
+                                <a href="#">for <span>{{model.TotalPayableItems}}</span> items</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <div class="pull-right">
+                        <button class="btn btn-default" type="submit" value="{{model.Pay$::click}}" onclick="++this.value">Pay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <dom-bind-notifier observed-object="{{model}}" path="model" deep></dom-bind-notifier>
+    </template>
+    <puppet-client ref="root"></puppet-client>
+    <starcounter-debug-aid></starcounter-debug-aid>
+</body>
+</html>
