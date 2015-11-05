@@ -75,7 +75,6 @@
       <DependentUpon>CustomerDataPage.json</DependentUpon>
     </Compile>
     <Compile Include="Api\MainHandlers.cs" />
-    <Compile Include="ViewModels\ICustomer.cs" />
     <Compile Include="ViewModels\RootPage.json.cs">
       <DependentUpon>RootPage.json</DependentUpon>
     </Compile>

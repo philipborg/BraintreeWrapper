@@ -1,5 +1,7 @@
 ﻿using BrainTreePaymentMethod;
 using Starcounter;
+using System;
+using System.Linq;
 
 namespace BrainTreePaymentMethod
 {
@@ -32,9 +34,12 @@ namespace BrainTreePaymentMethod
                 return standalone;
             });
 
-            Handle.GET("/payment/customer-data", () =>
+            Handle.GET("/payment/{?}/customer-data", (int payableNo) =>
             {
                 RootPage master = Self.GET<RootPage>("/payment");
+
+                //GETTING DATA FROM PAYABLE SIMPLIFIED DATA MODEL
+                var payable = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", payableNo).First;
 
                 master.CurrentPage = Db.Scope<CustomerDataPage>(() =>
                 {
@@ -42,14 +47,12 @@ namespace BrainTreePaymentMethod
                     {
                         Html = "/CustomerData/CustomerDataPage.html"
                     };
-                    
+
+                    page.Amount = payable.TotalGrossPrice;
+                    page.TotalPayableItems = payable.Items.Count();
+
                     return page;
                 });
-
-                //GETTING DATA FROM PAYABLE SIMPLYFY DATA MODEl
-
-                master.Amount = 696969.69M;
-                master.TotalPayableItems = 12;
 
                 return master;
             });
@@ -57,66 +60,3 @@ namespace BrainTreePaymentMethod
         }
     }
 }
-
-//CustomerDataPage customerDataPage;
-
-//if (Session.Current != null && Session.Current.Data != null)
-//{
-//    customerDataPage = (CustomerDataPage)Session.Current.Data;
-//}
-//else
-//{
-//    customerDataPage = new CustomerDataPage();
-
-//    if (Session.Current != null)
-//    {
-//        customerDataPage.Session = Session.Current;
-//    }
-//    else
-//    {
-//        customerDataPage.Session = new Session(SessionOptions.PatchVersioning);
-//    }
-//}
-
-//customerDataPage.Html = "/CustomerData/CustomerDataPage.html";
-
-//return customerDataPage;
-
-
-////decimal totalAmount
-
-//CustomerDataPage customerDataPage;
-
-//if (Session.Current != null && Session.Current.Data != null)
-//{
-//    customerDataPage = (CustomerDataPage)Session.Current.Data;
-//}
-//else
-//{
-//    customerDataPage = new CustomerDataPage();
-
-//    if (Session.Current != null)
-//    {
-//        //customerDataPage.Html = "/LauncherWrapperPage.html";
-//        customerDataPage.Session = Session.Current;
-//    }
-//    else
-//    {
-//        customerDataPage.Html = "/CustomerData/CustomerDataPage.html";
-//        customerDataPage.Session = new Session(SessionOptions.PatchVersioning);
-//    }
-//}
-
-//var basketViewPage = new BasketViewPage() {
-//    Html = "/Basket/BasketViewPage.html"
-//};
-//basketViewPage.Items = BindSimpleData(basketViewPage);
-
-////show when allready is done
-//rootPage.BasketView = basketViewPage;
-
-//var customerDataPage = new CustomerDataPage() {
-//    Html = "CustomerData/CustomerDataPage.html"
-//};
-
-//return customerDataPage;

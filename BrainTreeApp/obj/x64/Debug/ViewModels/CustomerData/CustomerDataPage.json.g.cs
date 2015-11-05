@@ -13,43 +13,53 @@ using s=Starcounter;
 using _GEN1_=System.Diagnostics.DebuggerNonUserCodeAttribute;
 using _GEN2_=System.CodeDom.Compiler.GeneratedCodeAttribute;
 using _ScTemplate_=Starcounter.Templates.Template;
+using BrainTreeApi.Models.Payment;
+using BrainTreeApi.Service.TransactionService;
+using BrainTreeApi.Service.CustomerServices;
+using BrainTreeApi.Models.Company;
+using BrainTreeApi.Models.CreditCard;
+using BrainTreeApi.Models.Address;
+using BrainTreeApi.Models.Customer;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __CuCustomer__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson;
-using __CuCustomer2__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input;
-using __CCuFirstNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.FirstName;
-using __CCuLastName__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.LastName;
-using __CCuPhone__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Phone;
-using __CCuEmail__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Email;
-using __CCuFax__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Fax;
-using __CuCompanyJ__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson;
-using __CuCompanyJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.JsonByExample;
-using __CuCompanyJ2__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.Input;
-using __CCoCompanyN__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.Input.CompanyName;
-using __CuCreditCa__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson;
-using __CuCreditCa1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.JsonByExample;
-using __CuCreditCa2__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input;
-using __CCrCardNumb__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.CardNumber;
-using __CCrExpiryMo__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.ExpiryMonth;
-using __CCrExpiryYe__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.ExpiryYear;
-using __CCrSecurity__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.SecurityNumber;
-using __CuCustomer3__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson;
-using __CuCustomer4__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.JsonByExample;
-using __CuCustomer5__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input;
-using __CCuFirstNam1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.FirstNameName;
-using __CCuLastName1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.LastNameName;
-using __CCuEmailNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.EmailName;
-using __CCuAddress1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.Address1Name;
-using __CCuZipPosta__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.ZipPostalCodeName;
-using __CCuTownName__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.TownName;
-using __CCuStateNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.StateName;
-using __CCuProvince__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.ProvinceName;
-using __Arr__ = global::Starcounter.Arr<global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson>;
 using __CuCustomer1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.JsonByExample;
-using __Customer2__ = global::BrainTreePaymentMethod.CustomerDataPage.Input;
+using __CCrExpiryMo__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.ExpiryMonth;
+using __CCrCardNumb__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.CardNumber;
+using __CuCreditCa2__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input;
+using __CuCreditCa1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.JsonByExample;
+using __CuCreditCa__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson;
+using __CCoCompanyN__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.Input.CompanyName;
+using __CCrExpiryYe__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.ExpiryYear;
+using __CuCompanyJ2__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.Input;
+using __CuCompanyJ__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson;
+using __CCuFax__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Fax;
+using __CCuEmail__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Email;
+using __CCuPhone__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Phone;
+using __CCuLastName__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.LastName;
+using __CCuFirstNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.FirstName;
+using __CuCompanyJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.JsonByExample;
+using __CuCustomer2__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input;
+using __CCrSecurity__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.SecurityNumber;
+using __CuCustomer4__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.JsonByExample;
+using __CuTotalPay__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.TotalPayableItems;
+using __CuAmount__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Amount;
 using __CuHtml__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Html;
-using __CAdCountryC1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha3;
+using __Customer2__ = global::BrainTreePaymentMethod.CustomerDataPage.Input;
+using __Arr__ = global::Starcounter.Arr<global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson>;
+using __CCuProvince__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.ProvinceName;
+using __CuCustomer3__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson;
+using __CCuStateNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.StateName;
+using __CCuZipPosta__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.ZipPostalCodeName;
+using __CCuAddress1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.Address1Name;
+using __CCuEmailNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.EmailName;
+using __CCuLastName1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.LastNameName;
+using __CCuFirstNam1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.FirstNameName;
+using __CuCustomer5__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input;
+using __CCuTownName__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input.TownName;
+using __CuPay__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Pay;
+using __CuSuccess__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Success;
+using __CAdCountryC2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeNumeric;
 using __Customer__ = global::BrainTreePaymentMethod.CustomerDataPage;
 using __CuSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.JsonByExample.Schema;
 using __TString__ = global::Starcounter.Templates.TString;
@@ -59,26 +69,29 @@ using __CCuSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJs
 using __CCoSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.JsonByExample.Schema;
 using __CCrSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.JsonByExample.Schema;
 using __CCuSchema1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.JsonByExample.Schema;
+using __TDecimal__ = global::Starcounter.Templates.TDecimal;
+using __TLong__ = global::Starcounter.Templates.TLong;
 using __CuErrorsEl__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson;
 using __Json__ = global::Starcounter.Json;
 using __Json1__ = global::Starcounter.Json.JsonByExample;
+using __CuCustomer__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson;
 using __CErSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.JsonByExample.Schema;
-using __CAdCountryC2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeNumeric;
-using __CuErrorsEl1__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.JsonByExample;
-using __CErError__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input.Error;
-using __TArray__ = global::Starcounter.Templates.TArray<global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson>;
-using __Customer1__ = global::BrainTreePaymentMethod.CustomerDataPage.JsonByExample;
-using __CuAddressJ__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson;
-using __CuAddressJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.JsonByExample;
-using __CuAddressJ2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input;
-using __CAdStreetAd__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.StreetAddress;
-using __CAdExtended__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.ExtendedAddress;
-using __CAdLocality__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.Locality;
-using __CAdRegion__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.Region;
-using __CAdPostalCo__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.PostalCode;
-using __CAdCountryN__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryName;
-using __CAdCountryC__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha2;
 using __CuErrorsEl2__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input;
+using __CAdCountryC1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha3;
+using __CAdCountryC__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha2;
+using __CAdCountryN__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryName;
+using __CAdPostalCo__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.PostalCode;
+using __CAdRegion__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.Region;
+using __CAdLocality__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.Locality;
+using __CuErrorsEl1__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.JsonByExample;
+using __CAdExtended__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.ExtendedAddress;
+using __CuAddressJ2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input;
+using __CuAddressJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.JsonByExample;
+using __CuAddressJ__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson;
+using __Customer1__ = global::BrainTreePaymentMethod.CustomerDataPage.JsonByExample;
+using __TArray__ = global::Starcounter.Templates.TArray<global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson>;
+using __CErError__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input.Error;
+using __CAdStreetAd__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.StreetAddress;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -138,7 +151,11 @@ public partial class CustomerDataPage : Page {
     private __CuCompanyJ__ __bf__Company__;
     private __CuCreditCa__ __bf__CreditCard__;
     private __CuCustomer3__ __bf__CustomerLabel__;
+    private System.Decimal __bf__Amount__;
+    private System.Int64 __bf__TotalPayableItems__;
+    private System.Int64 __bf__Pay__;
     private __Arr__ __bf__Errors__;
+    private System.String __bf__Success__;
     #line default
     
     #line hidden
@@ -165,9 +182,23 @@ public partial class CustomerDataPage : Page {
                 CreditCard.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CreditCard__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CreditCard__ = (__CuCreditCa__)_v_; }, false);
                 CustomerLabel = Add<__CCuSchema1__>("CustomerLabel");
                 CustomerLabel.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CustomerLabel__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CustomerLabel__ = (__CuCustomer3__)_v_; }, false);
+                Amount = Add<__TDecimal__>("Amount");
+                Amount.DefaultValue = 0.0m;
+                Amount.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__Amount__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__Amount__ = (System.Decimal)_v_; }, false);
+                TotalPayableItems = Add<__TLong__>("TotalPayableItems");
+                TotalPayableItems.DefaultValue = 0L;
+                TotalPayableItems.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__TotalPayableItems__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__TotalPayableItems__ = (System.Int64)_v_; }, false);
+                Pay = Add<__TLong__>("Pay$");
+                Pay.DefaultValue = 0L;
+                Pay.Editable = true;
+                Pay.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__Pay__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__Pay__ = (System.Int64)_v_; }, false);
+                Pay.AddHandler((Json pup, Property<Int64> prop, Int64 value) => { return (new Input.Pay() { App = (CustomerDataPage)pup, Template = (TLong)prop, Value = value }); }, (Json pup, Starcounter.Input<Int64> input) => { ((CustomerDataPage)pup).Handle((Input.Pay)input); });
                 Errors = Add<__TArray__>("Errors");
                 Errors.SetCustomGetElementType((arr) => { return __CuErrorsEl__.DefaultTemplate;});
                 Errors.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__Errors__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__Errors__ = (__Arr__)_v_; }, false);
+                Success = Add<__TString__>("Success");
+                Success.DefaultValue = "";
+                Success.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__Success__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__Success__ = (System.String)_v_; }, false);
             }
             public override object CreateInstance(s.Json parent) { return new __Customer__(this) { Parent = parent }; }
             public __TString__ Html;
@@ -176,7 +207,11 @@ public partial class CustomerDataPage : Page {
             public __CCoSchema__ Company;
             public __CCrSchema__ CreditCard;
             public __CCuSchema1__ CustomerLabel;
+            public __TDecimal__ Amount;
+            public __TLong__ TotalPayableItems;
+            public __TLong__ Pay;
             public __TArray__ Errors;
+            public __TString__ Success;
         }
         #line default
     }
@@ -254,15 +289,63 @@ public partial class CustomerDataPage : Page {
 #line default
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
+    public System.Decimal Amount {
+#line 40 "ViewModels\CustomerData\CustomerDataPage.json"
+    get {
+#line hidden
+        return Template.Amount.Getter(this); }
+#line 40 "ViewModels\CustomerData\CustomerDataPage.json"
+    set {
+#line hidden
+        Template.Amount.Setter(this, value); } }
+#line default
+
+    [_GEN1_][_GEN2_("Starcounter","2.0")]
+    public System.Int64 TotalPayableItems {
+#line 41 "ViewModels\CustomerData\CustomerDataPage.json"
+    get {
+#line hidden
+        return Template.TotalPayableItems.Getter(this); }
+#line 41 "ViewModels\CustomerData\CustomerDataPage.json"
+    set {
+#line hidden
+        Template.TotalPayableItems.Setter(this, value); } }
+#line default
+
+    [_GEN1_][_GEN2_("Starcounter","2.0")]
+    public System.Int64 Pay {
+#line 42 "ViewModels\CustomerData\CustomerDataPage.json"
+    get {
+#line hidden
+        return Template.Pay.Getter(this); }
+#line 42 "ViewModels\CustomerData\CustomerDataPage.json"
+    set {
+#line hidden
+        Template.Pay.Setter(this, value); } }
+#line default
+
+    [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Errors {
-#line 45 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 47 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Errors.Getter(this); }
-#line 45 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 47 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Errors.Setter(this, value); } }
+#line default
+
+    [_GEN1_][_GEN2_("Starcounter","2.0")]
+    public System.String Success {
+#line 49 "ViewModels\CustomerData\CustomerDataPage.json"
+    get {
+#line hidden
+        return Template.Success.Getter(this); }
+#line 49 "ViewModels\CustomerData\CustomerDataPage.json"
+    set {
+#line hidden
+        Template.Success.Setter(this, value); } }
 #line default
 
     
@@ -1165,11 +1248,11 @@ public partial class CustomerDataPage : Page {
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String Error {
-#line 43 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 46 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Error.Getter(this); }
-#line 43 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 46 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Error.Setter(this, value); } }
@@ -1195,6 +1278,26 @@ public partial class CustomerDataPage : Page {
         
         #line hidden
         public class Html : Input<__Customer__, __TString__, string> {
+        }
+        #line default
+        
+        #line hidden
+        public class Amount : Input<__Customer__, __TDecimal__, Decimal> {
+        }
+        #line default
+        
+        #line hidden
+        public class TotalPayableItems : Input<__Customer__, __TLong__, long> {
+        }
+        #line default
+        
+        #line hidden
+        public class Pay : Input<__Customer__, __TLong__, long> {
+        }
+        #line default
+        
+        #line hidden
+        public class Success : Input<__Customer__, __TString__, string> {
         }
         #line default
     }

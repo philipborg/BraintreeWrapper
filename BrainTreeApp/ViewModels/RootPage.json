@@ -1,13 +1,4 @@
 {
     "Html": "/BrainTreePaymentMethod/LauncherWrapperPage.html",
-    "CurrentPage": { },
-    "Amount": 0.0,
-    "TotalPayableItems" :  0,
-    "Pay$": 0,
-    "Errors": [
-        {
-            "Error": ""
-        }
-    ],
-    "Success":  ""
+    "CurrentPage": { }
 }

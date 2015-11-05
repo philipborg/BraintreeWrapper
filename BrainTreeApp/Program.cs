@@ -17,30 +17,5 @@ namespace BrainTreePaymentMethod
             BrainTreeHandlers brainTreeHandlers = new BrainTreeHandlers();
             brainTreeHandlers.RegisterBrainTreeHandlers();
         }
-
-        //METHOD ADD PAYMENT TO SIMPLYFI DATA MODEL
-        //PAYABLE APP KNOW IS ANY PAYMENT METHOD
-        //static void OnInstall()
-        //{
-        //    try
-        //    {
-        //        //var paymentSetting = new Simplified.Ring6.PaymentMethods()
-        //        //{
-        //        //    Name = "BrainTree payment method",
-        //        //    Description = "blah",
-        //        //    Url = "/payment/customer-data/{?}",
-        //        //    IsEnabled = true,
-        //        //};
-        //    }
-        //    catch(Exception ex)
-        //    {
-                
-        //    }
-        //}
-
-        //static void OnUnInstall()
-        //{
-        //    //paymentSetting.IsEnabled = false;
-        //}
     }
 }
