@@ -71,6 +71,9 @@
     <Compile Include="ViewModels\AppName.json.cs">
       <DependentUpon>AppName.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CreditCard\CreditCardPage.json.cs">
+      <DependentUpon>CreditCardPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CustomerData\CustomerDataPage.json.cs">
       <DependentUpon>CustomerDataPage.json</DependentUpon>
     </Compile>
@@ -81,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <TypedJSON Include="ViewModels\CreditCard\CreditCardPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <TypedJSON Include="ViewModels\AppName.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
@@ -91,8 +97,11 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="wwwroot\Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\CreditCard\CreditCardPage.html" />
     <Content Include="wwwroot\CustomerData\CustomerDataPage.html" />
     <Content Include="wwwroot\LauncherWrapperPage.html" />
     <Content Include="wwwroot\RootPage.html" />

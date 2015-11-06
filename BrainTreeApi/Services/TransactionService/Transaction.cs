@@ -40,8 +40,8 @@ namespace BrainTreeApi.Service.TransactionService
                 {
                     Number = creditCard.CardNumber,
                     CVV = creditCard.SecurityNumber,
-                    ExpirationMonth = creditCard.ExpiryMonth,
-                    ExpirationYear = creditCard.ExpiryYear,
+                    ExpirationMonth = creditCard.ExpiryMonth.ToString(),
+                    ExpirationYear = creditCard.ExpiryYear.ToString(),
                 }
             };
 

@@ -115,8 +115,8 @@ namespace BrainTreePaymentMethod
             return new CreditCardModel
             {
                 CardNumber = creditCard.CardNumber,
-                ExpiryMonth = creditCard.ExpiryMonth,
-                ExpiryYear = creditCard.ExpiryYear,
+                ExpiryMonth = Int32.Parse(creditCard.ExpiryMonth),
+                ExpiryYear = Int32.Parse(creditCard.ExpiryYear),
                 SecurityNumber = creditCard.SecurityNumber
             };
         }

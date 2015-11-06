@@ -1,4 +1,4 @@
-// This is a system generated file (G2). It reflects the Starcounter App Template defined in the file "ViewModels\Shared\BottomPage.json"
+// This is a system generated file (G2). It reflects the Starcounter App Template defined in the file "ViewModels\CreditCard\CreditCardPage.json"
 // DO NOT MODIFY DIRECTLY - CHANGES WILL BE OVERWRITTEN
 
 using System;
@@ -16,26 +16,26 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __BottomPa__ = global::BrainTreeApp.ViewModels.Shared.BottomPage;
-using __BoSchema__ = global::BrainTreeApp.ViewModels.Shared.BottomPage.JsonByExample.Schema;
-using __BottomPa1__ = global::BrainTreeApp.ViewModels.Shared.BottomPage.JsonByExample;
-using __BottomPa2__ = global::BrainTreeApp.ViewModels.Shared.BottomPage.Input;
+using __CreditCa__ = global::BrainTreeApp.ViewModels.CreditCard.CreditCardPage;
+using __CrSchema__ = global::BrainTreeApp.ViewModels.CreditCard.CreditCardPage.JsonByExample.Schema;
+using __CreditCa1__ = global::BrainTreeApp.ViewModels.CreditCard.CreditCardPage.JsonByExample;
+using __CreditCa2__ = global::BrainTreeApp.ViewModels.CreditCard.CreditCardPage.Input;
 
-namespace BrainTreeApp.ViewModels.Shared {
+namespace BrainTreeApp.ViewModels.CreditCard {
 
 #line hidden
-public partial class BottomPage : Page {
+public partial class CreditCardPage : Page {
     #line hidden
     [_GEN2_("Starcounter","2.0")]
-    public static __BoSchema__ DefaultTemplate = new __BoSchema__();
+    public static __CrSchema__ DefaultTemplate = new __CrSchema__();
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public BottomPage() { }
+    public CreditCardPage() { }
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public BottomPage(__BoSchema__ template) { Template = template; }
+    public CreditCardPage(__CrSchema__ template) { Template = template; }
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     protected override _ScTemplate_ GetDefaultTemplate() { return DefaultTemplate; }
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public new __BoSchema__ Template { get { return (__BoSchema__)base.Template; } set { base.Template = value; } }
+    public new __CrSchema__ Template { get { return (__CrSchema__)base.Template; } set { base.Template = value; } }
     public override bool IsCodegenerated { get { return true; } }
     #line default
     
@@ -47,11 +47,11 @@ public partial class BottomPage : Page {
         public class Schema : Page.JsonByExample.Schema {
             public Schema()
                 : base() {
-                InstanceType = typeof(__BottomPa__);
-                ClassName = "BottomPage";
+                InstanceType = typeof(__CreditCa__);
+                ClassName = "CreditCardPage";
                 Properties.ClearExposed();
             }
-            public override object CreateInstance(s.Json parent) { return new __BottomPa__(this) { Parent = parent }; }
+            public override object CreateInstance(s.Json parent) { return new __CreditCa__(this) { Parent = parent }; }
         }
         #line default
     }
@@ -67,7 +67,7 @@ public partial class BottomPage : Page {
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
-public class BottomPage_json : s::TemplateAttribute {
+public class CreditCardPage_json : s::TemplateAttribute {
 }
 #line default
 }

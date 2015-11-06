@@ -9,8 +9,6 @@ namespace BrainTreePaymentMethod
     {
         static void Main()
         {
-            //OnInstall();
-
             MainHandlers mainHandlers = new MainHandlers();
             mainHandlers.RegisterLauncher();
 

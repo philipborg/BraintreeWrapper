@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
   <setting>
+    <merchant-id></merchant-id>
     <public-key></public-key>
+    <private-key></private-key>
   </setting>
 </settings>
