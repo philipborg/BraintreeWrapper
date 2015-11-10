@@ -34,29 +34,20 @@ namespace BrainTreePaymentMethod
                 return standalone;
             });
 
-            Handle.GET("/payment/{?}/customer-data", (int payableNo) =>
+            Handle.GET("/payment/{?}/customer-data", (int basketNo) =>
             {
                 RootPage master = Self.GET<RootPage>("/payment");
 
-                //GETTING DATA FROM PAYABLE SIMPLIFIED DATA MODEL
-                var payable = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", payableNo).First;
-
-                master.CurrentPage = Db.Scope<CustomerDataPage>(() =>
-                {
-                    var page = new CustomerDataPage()
-                    {
-                        Html = "/CustomerData/CustomerDataPage.html"
-                    };
-
-                    page.Amount = payable.TotalGrossPrice;
-                    page.TotalPayableItems = payable.Items.Count();
+                master.CurrentPage = Db.Scope<CustomerDataPage>(() => {
+                    var page = new CustomerDataPage();
+                    
+                    page.BindData(basketNo);
 
                     return page;
                 });
 
                 return master;
             });
-
         }
     }
 }

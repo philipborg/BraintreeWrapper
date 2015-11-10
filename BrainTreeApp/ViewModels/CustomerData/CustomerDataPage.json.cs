@@ -7,38 +7,88 @@ using BrainTreeApi.Models.Company;
 using BrainTreeApi.Models.CreditCard;
 using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.Customer;
+using System.Linq;
+using BrainTreeApi.Validators.Company;
+using System.Collections.Generic;
+using FluentValidation.Results;
+using BrainTreeApi.Validators.Customer;
+using BrainTreeApi.Validators.CreditCard;
+using BrainTreeApi.Validators.Payment;
+using BrainTreeApi.Validators.Address;
 
 namespace BrainTreePaymentMethod
 {
     public partial class CustomerDataPage : Page
     {
+        public void BindData(int basketNo)
+        {
+            var data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", basketNo).First;
+
+            this.Data = data;
+
+            this.Amount = data.TotalGrossPrice;
+
+            this.TotalPayableItems = data.Items.Count();
+        }
+        
         void Handle(Input.Pay action)
         {
             var page = (CustomerDataPage)this;
 
             this.Errors.Clear();
 
+            bool formIsValid = false;
+
             var addressModel = MappingDataToAddress(page.Address);
+            var isValidAddress = ValidAddressModel(addressModel);
+            if(isValidAddress.Count > 0)
+            {
+                foreach (var inValidFields in isValidAddress)
+                {
+                    foreach(var fields in this.AddressErrors)
+                    {
+                        
+                    }
+                }
+
+                formIsValid = false;
+            }
 
             var customerModel = MappingDataToCustomer(page.Customer);
+            var isValidCustomer = ValidCustomerModel(customerModel);
+            if(isValidCustomer.Count > 0)
+            {
+                formIsValid = false;
+            }
 
             var creditCardModel = MappingDataToCreditCard(page.CreditCard);
+            var isValidCreditCard = ValidCreditCardModel(creditCardModel);
+            if(isValidCreditCard.Count > 0)
+            {
+                formIsValid = false;
+            }
 
             var paymentModel = MappingDataToCreditCard(this);
+            var isValidPayment = ValidPaymentModel(paymentModel);
 
             var company = MappingDataToCompany(page.Company);
+            var isValidCompany = ValidCompanyModel(company);
+            if(isValidCompany.Count > 0)
+            {
+                this.CompanyErrors.CompanyName = "has-error has-feedbac";
+                formIsValid = false;
+            }
+
+            if (!formIsValid) return;
 
             var customer = BrainTreeApi.Service.CustomerServices.Customer.CreateCustomer(customerModel);
-
             var customerId = string.Empty;
-
             if (!customer.Item1)
             {
                 this.Errors.Add(new ErrorsElementJson
                 {
                     Error = customer.Item2
                 });
-
                 return;
             }
 
@@ -138,36 +188,32 @@ namespace BrainTreePaymentMethod
         }
 
         #endregion
+        
+        #region CustomValidator
 
-
-        #region TODO
-
-        private bool ValidAddressModel(AddressModel address)
+        private IList<ValidationFailure> ValidCustomerModel(CustomerModel customer)
         {
-            //TODO VALID DATA
-
-            return true;
+            return new CustomerValidator().Validate(customer).Errors;
         }
 
-        private bool ValidCustomerModel(CustomerModel customer)
+        private IList<ValidationFailure> ValidAddressModel(AddressModel address)
         {
-            //TODO VALID DATA
-
-            return true;
+            return new AddressValidator().Validate(address).Errors;
         }
 
-        private bool ValidCreditCardModel(CreditCardModel creditCard)
+        private IList<ValidationFailure> ValidCompanyModel(CompanyModel company)
         {
-            //TODO VALID DATA
-
-            return true;
+            return new CompanyValidator().Validate(company).Errors;
         }
 
-        private bool ValidPaymentModel(PaymentModel payment)
+        private IList<ValidationFailure> ValidCreditCardModel(CreditCardModel creditCard)
         {
-            //TODO VALID DATA
+            return new CreditCardValidator().Validate(creditCard).Errors;
+        }
 
-            return true;
+        private IList<ValidationFailure> ValidPaymentModel(PaymentModel payment)
+        {
+            return new PaymentValidator().Validate(payment).Errors;
         }
 
         #endregion

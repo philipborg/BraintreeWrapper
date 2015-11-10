@@ -1,6 +1,4 @@
-﻿<link rel="import" src="../polymer/polymer.html">
-<link rel="import" href="/sys/bootstrap.html" />
-<template>
+﻿<template>
     <template id="payment-informations" is="dom-bind">
         <div>
             <div class="form-group">
@@ -27,7 +25,7 @@
                             </strong>
                         </label>
                         <label for="credit-card-information">{{model.Amount}}</label>
-                        <a href="#">for <span>{{model.TotalPayableItems}}</span> items</a>
+                        <a href="/basket">for <span>{{model.TotalPayableItems}}</span> items</a>
                     </div>
                 </div>
 
@@ -43,30 +41,21 @@
                             </strong>
                         </label>
                     </div>
-                    <!--has-error has-feedback-->
-                    <div class="form-group">
+                    <div class$="{{addErrorClass('form-group', model.CustomerErrors.FirstName)}}">
                         <label class="control-label" for="first-name">First name:</label>
                         <input type="text" class="form-control" id="first-name" aria-describedby="first-name" value="{{model.Customer.FirstName$::input}}">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                        <span id="first-name" class="sr-only">(error)</span>-->
                     </div>
-                    <div class="form-group">
+                    <div class$="{{addErrorClass('form-group', model.CustomerErrors.LastName)}}">
                         <label class="control-label" for="last-name">Last name:</label>
                         <input type="text" class="form-control" id="last-name" aria-describedby="last-name" value="{{model.Customer.LastName$::input}}">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                        <span id="last-name" class="sr-only">(error)</span>-->
                     </div>
-                    <div class="form-group">
+                    <div class$="{{addErrorClass('form-group', model.CustomerErrors.Phone)}}">
                         <label class="control-label" for="phone-number">Phone number:</label>
                         <input type="text" class="form-control" id="phone-number" aria-describedby="phone-number" value="{{model.Customer.Phone$::input}}">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                        <span id="phone-number" class="sr-only">(error)</span>-->
                     </div>
-                    <div class="form-group">
+                    <div class$="{{addErrorClass('form-group', model.CustomerErrors.Email)}}">
                         <label class="control-label" for="email">E-mail:</label>
                         <input type="text" class="form-control" id="email" aria-describedby="email" value="{{model.Customer.Email$::input}}">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                        <span id="email-name" class="sr-only">(error)</span>-->
                     </div>
                 </div>
                 <div id="billing-address-data">
@@ -79,35 +68,25 @@
                                 </strong>
                             </label>
                         </div>
-                        <div class="form-group">
+                        <div class$="{{addErrorClass('form-group', model.CompanyErrors.CompanyName)}}">
                             <label class="control-label" for="company-name">Company name:</label>
                             <input type="text" class="form-control" id="company-name" aria-describedby="company-name" value="{{model.Company.CompanyName$::input}}">
-                            <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                            <span id="company-name" class="sr-only">(error)</span>-->
                         </div>
-                        <div class="form-group">
+                        <div class$="{{addErrorClass('form-group', model.AddressErrors.StreetAddress)}}">
                             <label class="control-label" for="address-name">Street address:</label>
                             <input type="text" class="form-control" id="address-name" aria-describedby="address-name" value="{{model.Address.StreetAddress$::input}}">
-                            <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                            <span id="last-name" class="sr-only">(error)</span>-->
                         </div>
-                        <div class="form-group">
+                        <div class$="{{addErrorClass('form-group', model.AddressErrors.Locality)}}">
                             <label class="control-label" for="city-name">City:</label>
                             <input type="text" class="form-control" id="locality-name" aria-describedby="city-name" value="{{model.Address.Locality$::input}}">
-                            <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                            <span id="company-name" class="sr-only">(error)</span>-->
                         </div>
-                        <div class="form-group">
+                        <div class$="{{addErrorClass('form-group', model.AddressErrors.Region)}}">
                             <label class="control-label" for="region-number">Region:</label>
                             <input type="text" class="form-control" id="region-number" aria-describedby="region-number" value="{{model.Address.Region$::input}}">
-                            <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                            <span id="phone-number" class="sr-only">(error)</span>-->
                         </div>
-                        <div class="form-group">
+                        <div class$="{{addErrorClass('form-group', model.AddressErrors.PostalCode)}}">>
                             <label class="control-label" for="postal-code">Postal code:</label>
                             <input type="text" class="form-control" id="postal-code" aria-describedby="postal-code" value="{{model.Address.PostalCode$::input}}">
-                            <!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                            <span id="email-name" class="sr-only">(error)</span>-->
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="country-data">Country:</label>
@@ -129,11 +108,9 @@
                             </strong>
                         </label>
                     </div>
-                    <div class="form-group">
+                    <div class$="{{addErrorClass('form-group', model.CreditCardErrors.CardNumber)}}">>
                         <label class="control-label" for="card-number">Card number:</label>
                         <input type="text" class="form-control" id="card-number" aria-describedby="card-number" value="{{model.CreditCard.CardNumber$::input}}" placeholder="testing card is 4111111111111111">
-                        <!--<span class="form-control" aria-hidden="true"></span>
-                        <span id="card-number" class="sr-only">(error)</span>-->
                     </div>
                     <!--<div class="form-group">
                         <label class="control-label" for="phone-number">Exirance date:</label>
@@ -151,7 +128,7 @@
                             <select id="card-expiry-month" onchange="window.chooseExpiryMonth(event);">
                                 <option value="0">-- select month</option>
                                 <option value="01">01</option>
-                                <option value="02">02</option>
+                                <option value="02" selected="selected">02</option>
                                 <option value="03">03</option>
                                 <option value="04">04</option>
                                 <option value="05">05</option>
@@ -171,7 +148,7 @@
                             <select id="card-expiry-year" onchange="window.chooseExpiryDate(event);">
                                 <option value="0">-- select year</option>
                                 <option value="2016">2016</option>
-                                <option value="2017">2017</option>
+                                <option value="2017" selected="selected">2017</option>
                                 <option value="2018">2018</option>
                                 <option value="2019">2019</option>
                                 <option value="2020">2020</option>
@@ -186,11 +163,9 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="form-group">
+                    <div class$="{{addErrorClass('form-group', model.CreditCardErrors.SecurityNumber)}}">
                         <label class="control-label" for="security-number">Security number:</label>
-                        <input type="text" class="form-control" id="security-number" aria-describedby="security-number" value="{{model.CreditCard.SecurityNumber$::input}}" placeholder="Month is 02, year is 2017, CVV is 123">
-                        <!--<span class="form-control" aria-hidden="true"></span>
-                        <span id="security-number" class="sr-only">(error)</span>-->
+                        <input type="text" class="form-control" id="security-number" aria-describedby="security-number" value="{{model.CreditCard.SecurityNumber$::input}}" placeholder="CVV is 123">
                     </div>
                 </div>
             </div>
@@ -203,18 +178,26 @@
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
     <script>
-        var payableItems = document.querySelector('#payment-informations').model;
+        var payableItems = document.querySelector('#payment-informations');
+
+        payableItems.addErrorClass = function(basic, error)
+        {
+            return basic + ' ' + error;
+        }
+
         function chooseExpiryMonth(month) {
-            payableItems.CreditCard.ExpiryMonth$ = month.target.value;
+            payableItems.model.CreditCard.ExpiryMonth$ = month.target.value;
         }
+
         function chooseExpiryDate(year) {
-            payableItems.CreditCard.ExpiryYear$ = year.target.value;
+            payableItems.model.CreditCard.ExpiryYear$ = year.target.value;
         }
+
         function chooseContry(country) {
             var element = document.getElementById('country-select');
-            payableItems.Address.CountryName$ = element.options[element.selectedIndex].text;
-            payableItems.Address.CountryCodeAlpha2$ = element.options[element.selectedIndex].id;
-            payableItems.Address.CountryCodeAlpha3$ = country.target.value;
+            payableItems.model.Address.CountryName$ = element.options[element.selectedIndex].text;
+            payableItems.model.Address.CountryCodeAlpha2$ = element.options[element.selectedIndex].id;
+            payableItems.model.Address.CountryCodeAlpha3$ = country.target.value;
         }
     </script>
 </template>

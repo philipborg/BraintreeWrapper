@@ -9,11 +9,15 @@ namespace BrainTreePaymentMethod
 {
     public class MainHandlers
     {
-        public void RegisterLauncher()
+        public void RegisterLauncher(string appName, string description)
         {
             Handle.GET("/payment/app-name", () =>
             {
-                return new AppName();
+                return new AppName
+                {
+                    name = appName,
+                    description = description
+                };
             });
 
             Handle.GET("/payment/app-icon", () =>

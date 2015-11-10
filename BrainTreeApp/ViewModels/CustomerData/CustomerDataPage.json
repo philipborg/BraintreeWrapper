@@ -1,5 +1,5 @@
 {
-    "Html": "",
+    "Html": "/CustomerData/CustomerDataPage.html",
     "Address": {
         "StreetAddress$": "",
         "ExtendedAddress$": "",
@@ -11,6 +11,17 @@
         "CountryCodeAlpha3$": "",
         "CountryCodeNumeric$": ""
     },
+    "AddressErrors": {
+        "StreetAddress": "",
+        "ExtendedAddress": "",
+        "Locality": "",
+        "Region": "",
+        "PostalCode": "",
+        "CountryName": "",
+        "CountryCodeAlpha2": "",
+        "CountryCodeAlpha3": "",
+        "CountryCodeNumeric": ""
+    },
     "Customer": {
         "FirstName$": "",
         "LastName$": "",
@@ -18,14 +29,30 @@
         "Email$": "",
         "Fax$": ""
     },
+    "CustomerErrors": {
+        "FirstName": "",
+        "LastName": "",
+        "Phone": "",
+        "Email": "",
+        "Fax": ""
+    },
     "Company": {
         "CompanyName$": ""
+    },
+    "CompanyErrors": {
+        "CompanyName": ""
     },
     "CreditCard": {
         "CardNumber$": "",
         "ExpiryMonth$": "",
         "ExpiryYear$": "",
         "SecurityNumber$": ""
+    },
+    "CreditCardErrors": {
+        "CardNumber": "",
+        "ExpiryMonth": "",
+        "ExpiryYear": "",
+        "SecurityNumber": ""
     },
     "CustomerLabel": {
         "FirstNameName$": "",

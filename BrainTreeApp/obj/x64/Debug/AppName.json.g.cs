@@ -1,4 +1,4 @@
-// This is a system generated file (G2). It reflects the Starcounter App Template defined in the file "ViewModels\AppName.json"
+// This is a system generated file (G2). It reflects the Starcounter App Template defined in the file "AppName.json"
 // DO NOT MODIFY DIRECTLY - CHANGES WILL BE OVERWRITTEN
 
 using System;
@@ -16,18 +16,21 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __AppName__ = global::BrainTreePaymentMethod.AppName;
-using __ApSchema__ = global::BrainTreePaymentMethod.AppName.JsonByExample.Schema;
+using __AppName__ = global::AppName;
+using __Json__ = global::Starcounter.Json;
+using __TObject__ = global::Starcounter.Templates.TObject;
+using __Json1__ = global::Starcounter.Json.JsonByExample;
+using __ApSchema__ = global::AppName.JsonByExample.Schema;
 using __TString__ = global::Starcounter.Templates.TString;
-using __AppName1__ = global::BrainTreePaymentMethod.AppName.JsonByExample;
-using __AppName2__ = global::BrainTreePaymentMethod.AppName.Input;
-using __Apname__ = global::BrainTreePaymentMethod.AppName.Input.name;
-using __Apdescript__ = global::BrainTreePaymentMethod.AppName.Input.description;
-
-namespace BrainTreePaymentMethod {
+using __AppName1__ = global::AppName.JsonByExample;
+using __AppName2__ = global::AppName.Input;
+using __Apname__ = global::AppName.Input.name;
+using __Apdescript__ = global::AppName.Input.description;
+using __Aphtml__ = global::AppName.Input.html;
 
 #line hidden
-public partial class AppName : Page {
+[_GEN1_][_GEN2_("Starcounter","2.0")]
+public class AppName : __Json__ {
     #line hidden
     [_GEN2_("Starcounter","2.0")]
     public static __ApSchema__ DefaultTemplate = new __ApSchema__();
@@ -42,40 +45,45 @@ public partial class AppName : Page {
     public override bool IsCodegenerated { get { return true; } }
     private System.String __bf__name__;
     private System.String __bf__description__;
+    private System.String __bf__html__;
     #line default
     
     #line hidden
-    [_GEN1_][_GEN2_("Starcounter","2.0")]
     public static class JsonByExample {
         
         #line hidden
-        public class Schema : Page.JsonByExample.Schema {
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public class Schema : __TObject__ {
             public Schema()
                 : base() {
                 InstanceType = typeof(__AppName__);
                 ClassName = "AppName";
                 Properties.ClearExposed();
                 name = Add<__TString__>("name");
-                name.DefaultValue = "Payment brainTree";
+                name.DefaultValue = "";
                 name.SetCustomAccessors((_p_) => { return ((__AppName__)_p_).__bf__name__; }, (_p_, _v_) => { ((__AppName__)_p_).__bf__name__ = (System.String)_v_; }, false);
                 description = Add<__TString__>("description");
                 description.DefaultValue = "";
                 description.SetCustomAccessors((_p_) => { return ((__AppName__)_p_).__bf__description__; }, (_p_, _v_) => { ((__AppName__)_p_).__bf__description__ = (System.String)_v_; }, false);
+                html = Add<__TString__>("html");
+                html.DefaultValue = "/AppIconPage.html";
+                html.SetCustomAccessors((_p_) => { return ((__AppName__)_p_).__bf__html__; }, (_p_, _v_) => { ((__AppName__)_p_).__bf__html__ = (System.String)_v_; }, false);
             }
             public override object CreateInstance(s.Json parent) { return new __AppName__(this) { Parent = parent }; }
             public __TString__ name;
             public __TString__ description;
+            public __TString__ html;
         }
         #line default
     }
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public System.String name {
-#line 2 "ViewModels\AppName.json"
+#line 2 "AppName.json"
     get {
 #line hidden
         return Template.name.Getter(this); }
-#line 2 "ViewModels\AppName.json"
+#line 2 "AppName.json"
     set {
 #line hidden
         Template.name.Setter(this, value); } }
@@ -83,40 +91,52 @@ public partial class AppName : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public System.String description {
-#line 4 "ViewModels\AppName.json"
+#line 3 "AppName.json"
     get {
 #line hidden
         return Template.description.Getter(this); }
-#line 4 "ViewModels\AppName.json"
+#line 3 "AppName.json"
     set {
 #line hidden
         Template.description.Setter(this, value); } }
 #line default
 
+    [_GEN1_][_GEN2_("Starcounter","2.0")]
+    public System.String html {
+#line 5 "AppName.json"
+    get {
+#line hidden
+        return Template.html.Getter(this); }
+#line 5 "AppName.json"
+    set {
+#line hidden
+        Template.html.Setter(this, value); } }
+#line default
+
     
     #line hidden
-    [_GEN1_][_GEN2_("Starcounter","2.0")]
     public static class Input {
         
         #line hidden
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
         public class name : Input<__AppName__, __TString__, string> {
         }
         #line default
         
         #line hidden
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
         public class description : Input<__AppName__, __TString__, string> {
+        }
+        #line default
+        
+        #line hidden
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public class html : Input<__AppName__, __TString__, string> {
         }
         #line default
     }
     #line default
 }
 #line default
-
-#line hidden
-[_GEN1_][_GEN2_("Starcounter","2.0")]
-public class AppName_json : s::TemplateAttribute {
-}
-#line default
-}
 #pragma warning restore 1591
 #pragma warning restore 0108
