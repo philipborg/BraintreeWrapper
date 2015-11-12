@@ -1469,11 +1469,11 @@ public partial class CustomerDataPage : Page {
                     CardNumber.Editable = true;
                     CardNumber.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__CardNumber__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__CardNumber__ = (System.String)_v_; }, false);
                     ExpiryMonth = Add<__TString__>("ExpiryMonth$");
-                    ExpiryMonth.DefaultValue = "";
+                    ExpiryMonth.DefaultValue = "0";
                     ExpiryMonth.Editable = true;
                     ExpiryMonth.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__ExpiryMonth__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__ExpiryMonth__ = (System.String)_v_; }, false);
                     ExpiryYear = Add<__TString__>("ExpiryYear$");
-                    ExpiryYear.DefaultValue = "";
+                    ExpiryYear.DefaultValue = "0";
                     ExpiryYear.Editable = true;
                     ExpiryYear.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__ExpiryYear__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__ExpiryYear__ = (System.String)_v_; }, false);
                     SecurityNumber = Add<__TString__>("SecurityNumber$");

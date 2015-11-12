@@ -44,8 +44,8 @@
     },
     "CreditCard": {
         "CardNumber$": "",
-        "ExpiryMonth$": "",
-        "ExpiryYear$": "",
+        "ExpiryMonth$": "0",
+        "ExpiryYear$": "0",
         "SecurityNumber$": ""
     },
     "CreditCardErrors": {

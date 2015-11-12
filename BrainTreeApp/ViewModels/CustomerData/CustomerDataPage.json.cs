@@ -43,12 +43,23 @@ namespace BrainTreePaymentMethod
             var isValidAddress = ValidAddressModel(addressModel);
             if(isValidAddress.Count > 0)
             {
+                var field = this.AddressErrors as AddressErrorsJson;
+                if (field != null)
+                {
+                    field.StreetAddress = "";
+                    field.ExtendedAddress = "";
+                    field.Locality = "";
+                    field.Region = "";
+                    field.PostalCode = "";
+                    field.CountryName = "";
+                    field.CountryCodeAlpha2 = "";
+                    field.CountryCodeAlpha3 = "";
+                    field.CountryCodeNumeric = "";
+                }
+
                 foreach (var inValidFields in isValidAddress)
                 {
-                    foreach(var fields in this.AddressErrors)
-                    {
-                        
-                    }
+                    this.AddressErrors[inValidFields.PropertyName] = "has-error has-feedbac";
                 }
 
                 formIsValid = false;
@@ -58,6 +69,21 @@ namespace BrainTreePaymentMethod
             var isValidCustomer = ValidCustomerModel(customerModel);
             if(isValidCustomer.Count > 0)
             {
+                var field = this.CustomerErrors as CustomerErrorsJson;
+                if(field != null)
+                {
+                    field.FirstName = "";
+                    field.LastName = "";
+                    field.Phone = "";
+                    field.Email = "";
+                    field.Fax = "";
+                }
+
+                foreach (var inValidFields in isValidCustomer)
+                {
+                    this.CustomerErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+
                 formIsValid = false;
             }
 
@@ -65,6 +91,20 @@ namespace BrainTreePaymentMethod
             var isValidCreditCard = ValidCreditCardModel(creditCardModel);
             if(isValidCreditCard.Count > 0)
             {
+                var field = this.CreditCardErrors as CreditCardErrorsJson;
+                if (field != null)
+                {
+                    field.CardNumber = "";
+                    field.ExpiryMonth = "";
+                    field.ExpiryYear = "";
+                    field.SecurityNumber = "";
+                }
+
+                foreach (var inValidFields in isValidCreditCard)
+                {
+                    this.CreditCardErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+
                 formIsValid = false;
             }
 
@@ -75,7 +115,17 @@ namespace BrainTreePaymentMethod
             var isValidCompany = ValidCompanyModel(company);
             if(isValidCompany.Count > 0)
             {
-                this.CompanyErrors.CompanyName = "has-error has-feedbac";
+                var field = this.CompanyErrors as CompanyErrorsJson;
+                if (field != null)
+                {
+                    field.CompanyName = "";
+                }
+
+                foreach (var inValidFields in isValidCompany)
+                {
+                    this.CompanyErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+
                 formIsValid = false;
             }
 
@@ -189,7 +239,7 @@ namespace BrainTreePaymentMethod
 
         #endregion
         
-        #region CustomValidator
+        #region CustomValidators
 
         private IList<ValidationFailure> ValidCustomerModel(CustomerModel customer)
         {
