@@ -13,21 +13,6 @@ namespace BrainTreeApi.Service.CustomerServices
 {
     public static class Customer
     {
-        //NOT WORKING ? APPLICATION RESTARTING WTF :/
-        //private static BraintreeGateway _gateway
-        //{
-        //    get
-        //    {
-        //        //TODO GET FROM BRAINTREECONFIG.XML
-        //        return _gateway ?? new BraintreeGateway {
-        //            Environment = Braintree.Environment.SANDBOX,
-        //            MerchantId = "3t7txmqspfhwygry",
-        //            PublicKey = "xgdnqmpn4qjdvfns",
-        //            PrivateKey = "e288172b64376e5c9e56d2f5b91e0283"
-        //        };
-        //    }
-        //}
-
         public static Tuple<bool, string> CreateCustomer(CustomerModel customer)
         {
             var request = new CustomerRequest

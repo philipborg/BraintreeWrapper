@@ -65,12 +65,16 @@
         "ProvinceName$": ""
     },
     "Amount": 0.0,
-    "TotalPayableItems" :  0,
+    "TotalPayableItems": 0,
     "Pay$": 0,
+    "Dialog": {
+        "IsProcess$" :  false,
+        "Message$": ""
+    },
     "Errors": [
         {
             "Error": ""
         }
     ],
-    "Success":  ""
+    "RedirectUrl$":  ""
 }

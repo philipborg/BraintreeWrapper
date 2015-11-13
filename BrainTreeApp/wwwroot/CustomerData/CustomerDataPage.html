@@ -1,5 +1,12 @@
-﻿<template>
+﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html" />
+<link href="../style/dialog.css" rel="stylesheet" />
+<template>
     <template id="payment-informations" is="dom-bind">
+        <template is="dom-if" if="{{model.Dialog.IsProcess$}}">
+            <div id="dialog-wrapper">
+                <div class="dialog-message">{{model.Dialog.Message$}}</div>
+            </div>
+        </template>
         <div>
             <div class="form-group">
                 <h4>PAYMENT DETAILS - CREDIT CARD</h4>
@@ -110,17 +117,11 @@
                     </div>
                     <div class$="{{addErrorClass('form-group', model.CreditCardErrors.CardNumber)}}">
                         <label class="control-label" for="card-number">Card number:</label>
-                        <input type="text" class="form-control" id="card-number" aria-describedby="card-number" value="{{model.CreditCard.CardNumber$::input}}" placeholder="testing card is 4111111111111111">
+                        <input type="text" class="form-control" id="card-number" aria-describedby="card-number" value="{{model.CreditCard.CardNumber$::input}}">
                     </div>
-                    <!--<div class="form-group">
-                        <label class="control-label" for="phone-number">Exirance date:</label>
-                        <input type="text" class="form-control" id="phone-number" aria-describedby="phone-number">
-                        <span class="form-control" aria-hidden="true"></span>
-                        <span id="phone-number" class="sr-only">(error)</span>
-                    </div>-->
                     <div class="form-group">
                         <label for="customer-information">
-                            Expiry date ( month - 02 / year - 2017):
+                            Expiry date:
                         </label>
                     </div>
                     <div>
@@ -144,7 +145,7 @@
                         <div class="form-group col-lg-1">
                             <label>/</label>
                         </div>
-                        <div class="form-group col-lg-5">
+                        <div class="form-group col-lg-5 has-error has-feedbac">
                             <select id="card-expiry-year" onchange="window.chooseExpiryDate(event);">
                                 <option value="0">-- select year</option>
                                 <option value="2016">2016</option>
@@ -165,16 +166,17 @@
                     <div class="clearfix"></div>
                     <div class$="{{addErrorClass('form-group', model.CreditCardErrors.SecurityNumber)}}">
                         <label class="control-label" for="security-number">Security number:</label>
-                        <input type="text" class="form-control" id="security-number" aria-describedby="security-number" value="{{model.CreditCard.SecurityNumber$::input}}" placeholder="CVV is 123">
+                        <input type="text" class="form-control" id="security-number" aria-describedby="security-number" value="{{model.CreditCard.SecurityNumber$::input}}">
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
             <hr />
             <div class="pull-right">
-                <button class="btn btn-default" type="submit" value="{{model.Pay$::click}}" onclick="++this.value">Pay</button>
+                <button class="btn btn-default" type="submit" value="{{model.Pay$::click}}" onclick="process();">Pay</button>
             </div>
         </div>
+        <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}" />
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
     <script>
@@ -198,6 +200,13 @@
             payableItems.model.Address.CountryName$ = element.options[element.selectedIndex].text;
             payableItems.model.Address.CountryCodeAlpha2$ = element.options[element.selectedIndex].id;
             payableItems.model.Address.CountryCodeAlpha3$ = country.target.value;
+        }
+
+        function process()
+        {
+            payableItems.model.Dialog.IsProcess$ = true;
+            payableItems.model.Dialog.Message$ = 'Payments processing';
+            payableItems.model.Pay$ = ++this.value;
         }
     </script>
 </template>

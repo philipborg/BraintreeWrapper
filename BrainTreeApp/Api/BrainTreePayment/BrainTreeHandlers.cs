@@ -1,4 +1,5 @@
-﻿using BrainTreePaymentMethod;
+﻿using BrainTreeApp;
+using BrainTreePaymentMethod;
 using Starcounter;
 using System;
 using System.Linq;
@@ -47,6 +48,16 @@ namespace BrainTreePaymentMethod
                 });
 
                 return master;
+            });
+
+            Handle.GET("/payment/finished", () =>
+            {
+                RootPage master = Self.GET<RootPage>("/payment");
+
+                master.CurrentPage = new PaymentFinishedPage();
+
+                return master;
+
             });
         }
     }

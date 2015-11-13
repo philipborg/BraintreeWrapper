@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BrainTreeSerivce.cs" />
     <Compile Include="Models\Address\AddressModel.cs" />
     <Compile Include="Models\Company\CompanyModel.cs" />
     <Compile Include="Models\CreditCard\CreditCardModel.cs" />
@@ -68,6 +69,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
