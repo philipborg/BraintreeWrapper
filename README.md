@@ -1,6 +1,6 @@
 # BrainTreeApp
 
-BrainTree app is payment provider whereby user can pay from the items. Curentlly version user have to set own data, billing address and credit card infomrations which are required.
+BrainTree app is payment provider whereby user can pay for the items. Currently version user have to set own data, billing address and credit card informations which are required.
 
 To testing this app, please:
 
