@@ -35,14 +35,14 @@ namespace BrainTreePaymentMethod
                 return standalone;
             });
 
-            Handle.GET("/payment/{?}/customer-data", (int basketNo) =>
+            Handle.GET("/braintree/checkout/{?}", (int objectId) =>
             {
                 RootPage master = Self.GET<RootPage>("/payment");
 
                 master.CurrentPage = Db.Scope<CustomerDataPage>(() => {
                     var page = new CustomerDataPage();
-                    
-                    page.BindData(basketNo);
+
+                    page.BindData(objectId);
 
                     return page;
                 });

@@ -74,6 +74,9 @@
     <Compile Include="Api\BrainTreePayment\BrainTreeHandlers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Common\PaymentFinishedPage.json.cs">
+      <DependentUpon>PaymentFinishedPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CreditCard\CreditCardPage.json.cs">
       <DependentUpon>CreditCardPage.json</DependentUpon>
     </Compile>
@@ -86,6 +89,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <TypedJSON Include="ViewModels\Common\PaymentFinishedPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <TypedJSON Include="AppName.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
@@ -106,11 +112,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\AppIconPage.html" />
+    <Content Include="wwwroot\Common\PaymentResultPage.html" />
     <Content Include="wwwroot\CreditCard\CreditCardPage.html" />
     <Content Include="wwwroot\CustomerData\CustomerDataPage.html" />
     <Content Include="wwwroot\Images\braintree.png" />
     <Content Include="wwwroot\LauncherWrapperPage.html" />
     <Content Include="wwwroot\RootPage.html" />
+    <Content Include="wwwroot\Style\dialog.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BrainTreeApi\BrainTreeApi.csproj">

@@ -20,9 +20,9 @@ namespace BrainTreePaymentMethod
 {
     public partial class CustomerDataPage : Page
     {
-        public void BindData(int basketNo)
+        public void BindData(int basketId)
         {
-            var data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", basketNo).First;
+            var data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", basketId).First;
 
             this.Data = data;
 
@@ -37,100 +37,31 @@ namespace BrainTreePaymentMethod
 
             this.Errors.Clear();
 
-            bool formIsValid = false;
+            var formValid = new List<bool>();
 
             var addressModel = MappingDataToAddress(page.Address);
-            var isValidAddress = ValidAddressModel(addressModel);
-            if(isValidAddress.Count > 0)
-            {
-                var field = this.AddressErrors as AddressErrorsJson;
-                if (field != null)
-                {
-                    field.StreetAddress = "";
-                    field.ExtendedAddress = "";
-                    field.Locality = "";
-                    field.Region = "";
-                    field.PostalCode = "";
-                    field.CountryName = "";
-                    field.CountryCodeAlpha2 = "";
-                    field.CountryCodeAlpha3 = "";
-                    field.CountryCodeNumeric = "";
-                }
-
-                foreach (var inValidFields in isValidAddress)
-                {
-                    this.AddressErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-
-                formIsValid = false;
-            }
+            formValid.Add(ValidAddressModel(addressModel));
 
             var customerModel = MappingDataToCustomer(page.Customer);
-            var isValidCustomer = ValidCustomerModel(customerModel);
-            if(isValidCustomer.Count > 0)
-            {
-                var field = this.CustomerErrors as CustomerErrorsJson;
-                if(field != null)
-                {
-                    field.FirstName = "";
-                    field.LastName = "";
-                    field.Phone = "";
-                    field.Email = "";
-                    field.Fax = "";
-                }
+            formValid.Add(ValidCustomerModel(customerModel));
 
-                foreach (var inValidFields in isValidCustomer)
-                {
-                    this.CustomerErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-
-                formIsValid = false;
-            }
+            var companyModel = MappingDataToCompany(page.Company);
+            formValid.Add(ValidCompanyModel(companyModel));
 
             var creditCardModel = MappingDataToCreditCard(page.CreditCard);
-            var isValidCreditCard = ValidCreditCardModel(creditCardModel);
-            if(isValidCreditCard.Count > 0)
-            {
-                var field = this.CreditCardErrors as CreditCardErrorsJson;
-                if (field != null)
-                {
-                    field.CardNumber = "";
-                    field.ExpiryMonth = "";
-                    field.ExpiryYear = "";
-                    field.SecurityNumber = "";
-                }
-
-                foreach (var inValidFields in isValidCreditCard)
-                {
-                    this.CreditCardErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-
-                formIsValid = false;
-            }
+            formValid.Add(ValidCreditCardModel(creditCardModel));
 
             var paymentModel = MappingDataToCreditCard(this);
-            var isValidPayment = ValidPaymentModel(paymentModel);
+            formValid.Add(ValidPaymentModel(paymentModel));
 
-            var company = MappingDataToCompany(page.Company);
-            var isValidCompany = ValidCompanyModel(company);
-            if(isValidCompany.Count > 0)
+            var isFormValid = formValid.TrueForAll(jk => { return jk; }) || formValid.TrueForAll(jk => { return !jk; });
+
+            if(!isFormValid)
             {
-                var field = this.CompanyErrors as CompanyErrorsJson;
-                if (field != null)
-                {
-                    field.CompanyName = "";
-                }
-
-                foreach (var inValidFields in isValidCompany)
-                {
-                    this.CompanyErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-
-                formIsValid = false;
+                ShowHideDialog();
+                return;
             }
-
-            if (!formIsValid) return;
-
+            
             var customer = BrainTreeApi.Service.CustomerServices.Customer.CreateCustomer(customerModel);
             var customerId = string.Empty;
             if (!customer.Item1)
@@ -139,12 +70,14 @@ namespace BrainTreePaymentMethod
                 {
                     Error = customer.Item2
                 });
+
+                ShowHideDialog();
                 return;
             }
 
             customerModel.CustomerId = customer.Item2;
 
-            var billingAddress = BrainTreeApi.Service.CustomerServices.Customer.CreateAddress(customerModel, addressModel, company);
+            var billingAddress = BrainTreeApi.Service.CustomerServices.Customer.CreateAddress(customerModel, addressModel, companyModel);
             var billingAddressId = string.Empty;
 
             if (!billingAddress.Item1)
@@ -154,6 +87,7 @@ namespace BrainTreePaymentMethod
                     Error = billingAddress.Item2
                 });
 
+                ShowHideDialog();
                 return;
             }
 
@@ -167,16 +101,28 @@ namespace BrainTreePaymentMethod
                     Error = result.Item2
                 });
 
+                ShowHideDialog();
                 return;
             }
 
-            this.Success = "Payment completed ;) !";
+            ShowHideDialog();
+            this.RedirectUrl = "/payment/finished";
         }
 
         private Tuple<bool, string> CreateTransaction(string customerId, string billingAddressId, CreditCardModel creditCard, PaymentModel payment)
         {
             return BrainTreeApi.Service.TransactionService.Transaction.CreateTransactionWithBillingAddress(customerId, billingAddressId, creditCard, payment);
         }
+
+        #region DialogShowHide
+        
+        protected void ShowHideDialog(string message = "", bool isProcess = false)
+        {
+            this.Dialog.IsProcess = isProcess;
+            this.Dialog.Message = message;
+        }
+
+        #endregion
 
         #region Mapping JSON TO MODEL
 
@@ -241,29 +187,91 @@ namespace BrainTreePaymentMethod
         
         #region CustomValidators
 
-        private IList<ValidationFailure> ValidCustomerModel(CustomerModel customer)
+        private bool ValidCustomerModel(CustomerModel customer)
         {
-            return new CustomerValidator().Validate(customer).Errors;
+            this.CustomerErrors = new CustomerErrorsJson();
+
+            var isValidCustomer = new CustomerValidator().Validate(customer);
+
+            if (isValidCustomer.Errors.Count > 0)
+            {
+                foreach (var inValidFields in isValidCustomer.Errors)
+                {
+                    this.CustomerErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+            }
+
+            return isValidCustomer.IsValid;
         }
 
-        private IList<ValidationFailure> ValidAddressModel(AddressModel address)
+        private bool ValidAddressModel(AddressModel address)
         {
-            return new AddressValidator().Validate(address).Errors;
+            this.AddressErrors = new AddressErrorsJson();
+
+            var isValidAddress = new AddressValidator().Validate(address);
+
+            if(isValidAddress.Errors.Count > 0)
+            {
+                foreach (var inValidFields in isValidAddress.Errors)
+                {
+                    this.AddressErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+            }
+
+            return isValidAddress.IsValid;
         }
 
-        private IList<ValidationFailure> ValidCompanyModel(CompanyModel company)
+        private bool ValidCompanyModel(CompanyModel company)
         {
-            return new CompanyValidator().Validate(company).Errors;
+            this.CompanyErrors = new CompanyErrorsJson();
+
+            var isValidCompany = new CompanyValidator().Validate(company);
+
+            if (isValidCompany.Errors.Count > 0)
+            {
+                foreach (var inValidFields in isValidCompany.Errors)
+                {
+                    this.CompanyErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+            }
+
+            return isValidCompany.IsValid;
         }
 
-        private IList<ValidationFailure> ValidCreditCardModel(CreditCardModel creditCard)
+        private bool ValidCreditCardModel(CreditCardModel creditCard)
         {
-            return new CreditCardValidator().Validate(creditCard).Errors;
+            this.CreditCardErrors = new CreditCardErrorsJson();
+
+            var isValidCreditCard = new CreditCardValidator().Validate(creditCard);
+
+            if(isValidCreditCard.Errors.Count > 0)
+            { 
+                foreach (var inValidFields in isValidCreditCard.Errors)
+                {
+                    this.CreditCardErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+                }
+
+            }
+            
+            return isValidCreditCard.IsValid;
         }
 
-        private IList<ValidationFailure> ValidPaymentModel(PaymentModel payment)
+        private bool ValidPaymentModel(PaymentModel payment)
         {
-            return new PaymentValidator().Validate(payment).Errors;
+            var isValidPayment = new PaymentValidator().Validate(payment);
+
+            if (isValidPayment.Errors.Count > 0)
+            {
+                foreach (var error in isValidPayment.Errors)
+                {
+                    this.Errors.Add(new ErrorsElementJson
+                    {
+                        Error = error.ErrorMessage
+                    });
+                }
+            }
+
+            return isValidPayment.IsValid;
         }
 
         #endregion
