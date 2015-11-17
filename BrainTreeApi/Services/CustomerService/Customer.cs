@@ -8,6 +8,7 @@ using BrainTreeApi.Models;
 using BrainTreeApi.Models.Customer;
 using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.Company;
+using BrainTreeApi.Common;
 
 namespace BrainTreeApi.Service.CustomerServices
 {
@@ -15,6 +16,8 @@ namespace BrainTreeApi.Service.CustomerServices
     {
         public static Tuple<bool, string> CreateCustomer(CustomerModel customer)
         {
+            BrainTreeConfig.ReadConfig();
+
             var request = new CustomerRequest
             {
                 FirstName = customer.FirstName,
@@ -23,17 +26,8 @@ namespace BrainTreeApi.Service.CustomerServices
                 Phone = customer.Phone
             };
 
-            var _gateway = new BraintreeGateway {
-                Environment = Braintree.Environment.SANDBOX,
-                MerchantId = "3t7txmqspfhwygry",
-                PublicKey = "xgdnqmpn4qjdvfns",
-                PrivateKey = "e288172b64376e5c9e56d2f5b91e0283"
-            };
-
-            var result = _gateway.Customer.Create(request);
+            var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Customer.Create(request);
             
-            
-
             if(result.IsSuccess())
             {
                 return new Tuple<bool, string>(result.IsSuccess(), result.Target.Id);
@@ -58,14 +52,7 @@ namespace BrainTreeApi.Service.CustomerServices
                 CountryCodeAlpha2 = address.CountryCodeAlpha2
             };
 
-            var _gateway = new BraintreeGateway {
-                Environment = Braintree.Environment.SANDBOX,
-                MerchantId = "3t7txmqspfhwygry",
-                PublicKey = "xgdnqmpn4qjdvfns",
-                PrivateKey = "e288172b64376e5c9e56d2f5b91e0283"
-            };
-
-            var result = _gateway.Address.Create(customer.CustomerId, request);
+            var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Address.Create(customer.CustomerId, request);
 
             if (result.IsSuccess())
             {

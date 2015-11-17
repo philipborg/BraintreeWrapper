@@ -116,5 +116,3 @@ node_modules
 *.sln.DotSettings
 
 dist/*
-
-*.suo

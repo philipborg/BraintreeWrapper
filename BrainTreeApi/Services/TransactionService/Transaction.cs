@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using BrainTreeApi.Common;
 using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.CreditCard;
 using BrainTreeApi.Models.Customer;
@@ -30,15 +31,8 @@ namespace BrainTreeApi.Service.TransactionService
                 }
             };
 
-            var _gateway = new BraintreeGateway
-            {
-                Environment = Braintree.Environment.SANDBOX,
-                MerchantId = "3t7txmqspfhwygry",
-                PublicKey = "xgdnqmpn4qjdvfns",
-                PrivateKey = "e288172b64376e5c9e56d2f5b91e0283"
-            };
+            var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Transaction.Sale(transactionRequest);
 
-            var result = _gateway.Transaction.Sale(transactionRequest);
             if (result.IsSuccess())
             {
                 return new Tuple<bool, string>(result.IsSuccess(), result.Target.Id);

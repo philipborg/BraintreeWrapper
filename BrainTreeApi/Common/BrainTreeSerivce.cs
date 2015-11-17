@@ -1,31 +1,30 @@
 ﻿using Braintree;
+using BrainTreeApi.Enums;
+using System;
 namespace BrainTreeApi.Common
 {
     public sealed class BrainTreeSerivce
     {
-        static readonly BrainTreeSerivce _instance = new BrainTreeSerivce();
-
-        //static BraintreeGateway = new 
+        static BrainTreeSerivce _instance;
 
         public static BrainTreeSerivce Instance
         {
-            get
-            {
-                return _instance;
-            }
+            get { return _instance ?? (_instance = new BrainTreeSerivce()); }
         }
 
-        private BrainTreeSerivce()
+        private BrainTreeSerivce() { }
+
+        public BraintreeGateway GetBrainTreeGateway()
         {
-            //var _gateway = new BraintreeGateway
-            //{
-            //    Environment = Braintree.Environment.SANDBOX,
-            //    MerchantId = "",
-            //    PublicKey = "",
-            //    PrivateKey = ""
-            //};
+            var config = BrainTreeConfig.ReadConfig();
+
+            return new BraintreeGateway
+            {
+                Environment = BrainTreeConfig.GetEnum(config.Enviroment),
+                MerchantId = config.MerchantId,
+                PublicKey = config.PublicKey,
+                PrivateKey = config.PrivateKey
+            };
         }
     }
 }
-// placeholder="testing card is 4111111111111111"
-// ( month - 02 / year - 2017)

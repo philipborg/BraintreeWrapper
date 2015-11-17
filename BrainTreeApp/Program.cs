@@ -2,6 +2,8 @@
 using Starcounter;
 using BrainTreePaymentMethod;
 using Simplified.Ring3;
+using System.Reflection;
+using BrainTreeApi.Common;
 
 namespace BrainTreePaymentMethod
 {
@@ -12,11 +14,13 @@ namespace BrainTreePaymentMethod
 
         static void Main()
         {
+            var app = Application.GetApplication(Assembly.GetExecutingAssembly());
+
             //WHEN INSTALL APP, ADD RECORDS TO SIMPLIFY PaymentMethod
             //BASKET APP KNOW ARE ANY PAYMENT METHODS
             //IF NO PAYMENT WAS BLOCKED - BASKET INFORMATION
             //IF PAYMENT EXISTS REDIRECT
-            OnInstall();
+            OnInstall(app.WorkingDirectory);
 
             MainHandlers mainHandlers = new MainHandlers();
             mainHandlers.RegisterLauncher(APP_NAME,DESCRIPTION);
@@ -28,8 +32,15 @@ namespace BrainTreePaymentMethod
             //OnUnInstall();
         }
 
-        private static void OnInstall()
+        private static void SetConfigFilePath(string appDirectory)
         {
+            BrainTreeConfig.FileConfigPath = string.Format("{0}\\{1}", appDirectory, "Config\\BrainTreeConfig.xml");
+        }
+
+        private static void OnInstall(string appDirectory)
+        {
+            SetConfigFilePath(appDirectory);
+            
             var isExist = Db.SQL<PaymentMethod>("SELECT p FROM Simplified.Ring3.PaymentMethod p WHERE p.MethodName = ?", APP_NAME).First;   
             
             if(isExist == null)
