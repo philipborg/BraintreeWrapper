@@ -48,16 +48,12 @@ namespace BrainTreeApi.Common
             {
                 case "Development":
                     return Braintree.Environment.DEVELOPMENT;
-                    break;
                 case "Sandbox":
                     return Braintree.Environment.SANDBOX;
-                    break;
                 case "Production":
                     return Braintree.Environment.PRODUCTION;
-                    break;
                 case "Qa":
                     return Braintree.Environment.QA;
-                    break;
                 default:
                     return Braintree.Environment.DEVELOPMENT;
             }
