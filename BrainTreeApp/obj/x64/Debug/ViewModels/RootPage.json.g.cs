@@ -13,7 +13,6 @@ using s=Starcounter;
 using _GEN1_=System.Diagnostics.DebuggerNonUserCodeAttribute;
 using _GEN2_=System.CodeDom.Compiler.GeneratedCodeAttribute;
 using _ScTemplate_=Starcounter.Templates.Template;
-using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.CreditCard;
 using BrainTreeApi.Models.Customer;
 #pragma warning disable 0108

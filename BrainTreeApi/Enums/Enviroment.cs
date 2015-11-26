@@ -5,7 +5,6 @@ namespace BrainTreeApi.Enums
 {
     public enum Enviroment
     {
-
         Development,
 
         Sandbox,

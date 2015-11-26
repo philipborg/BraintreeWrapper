@@ -1,4 +1,3 @@
-using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.CreditCard;
 using BrainTreeApi.Models.Customer;
 using Starcounter;

@@ -42,18 +42,7 @@
     "CompanyErrors": {
         "CompanyName": ""
     },
-    "CreditCard": {
-        "CardNumber$": "",
-        "ExpiryMonth$": "0",
-        "ExpiryYear$": "0",
-        "SecurityNumber$": ""
-    },
-    "CreditCardErrors": {
-        "CardNumber": "",
-        "ExpiryMonth": "",
-        "ExpiryYear": "",
-        "SecurityNumber": ""
-    },
+
     "CustomerLabel": {
         "FirstNameName$": "",
         "LastNameName$": "",

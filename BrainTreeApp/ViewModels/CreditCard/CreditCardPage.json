@@ -1,2 +1,34 @@
 {
+    "Html": "/CreditCard/CreditCardPage.html",
+    "Pay$": 0,
+    "CreditCard": {
+        "CardNumber$": "",
+        "ExpiryMonth$": "0",
+        "ExpiryYear$": "0",
+        "SecurityNumber$": ""
+    },
+    "CreditCardError": {
+        "CardNumber": "",
+        "ExpiryMonth": "",
+        "ExpiryYear": "",
+        "SecurityNumber": ""
+    },
+    "Months": [
+        {
+            "Text": "",
+            "Value": ""
+        }
+    ],
+    "Years": [
+        {
+            "Text": "",
+            "Value": ""
+        }
+    ],
+    "Errors": [
+        {
+            "Error": ""
+        }
+    ],
+    "RedirectUrl$": ""
 }

@@ -1,45 +1,77 @@
 ﻿using Braintree;
+using Braintree.Exceptions;
 using BrainTreeApi.Common;
-using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.CreditCard;
 using BrainTreeApi.Models.Customer;
 using BrainTreeApi.Models.Payment;
-using BrainTreeApi.Service.CustomerServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BrainTreeApi.Service.TransactionService
 {
     public static class Transaction
     {
-        public static Tuple<bool, string> CreateTransactionWithBillingAddress(string customerId, string billingAddressId, CreditCardModel creditCard, PaymentModel payment)
+        public static void CreateTransactionWithCustomer(CustomerModel customer, CreditCardModel creditCard, PaymentModel payment)
         {
-            var transactionRequest = new TransactionRequest
+            try
             {
-                Amount = payment.Amount,
-                CustomerId = customerId,
-                BillingAddressId = billingAddressId,
-                CreditCard = new TransactionCreditCardRequest
+                var transactionRequest = new TransactionRequest
                 {
-                    Number = creditCard.CardNumber,
-                    CVV = creditCard.SecurityNumber,
-                    ExpirationMonth = creditCard.ExpiryMonth.ToString(),
-                    ExpirationYear = creditCard.ExpiryYear.ToString(),
-                }
-            };
+                    Amount = payment.Amount,
+                    Customer = new CustomerRequest
+                    {
+                        FirstName = customer.FirstName,
+                        LastName = customer.LastName,
+                        Email = customer.Email
+                    },
+                    CreditCard = new TransactionCreditCardRequest
+                    {
+                        Number = creditCard.CardNumber,
+                        CVV = creditCard.SecurityNumber,
+                        ExpirationMonth = creditCard.ExpiryMonth.ToString(),
+                        ExpirationYear = creditCard.ExpiryYear.ToString(),
+                    }
+                };
 
-            var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Transaction.Sale(transactionRequest);
+                var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Transaction.Sale(transactionRequest);
 
-            if (result.IsSuccess())
-            {
-                return new Tuple<bool, string>(result.IsSuccess(), result.Target.Id);
+                if (!result.IsSuccess())
+                    throw new Exception(result.Message);
+                    
             }
-            else
+            catch (Braintree.Exceptions.AuthenticationException ex)
             {
-                return new Tuple<bool, string>(result.IsSuccess(), result.Message);
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.AuthorizationException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.DownForMaintenanceException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.InvalidChallengeException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.InvalidSignatureException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.NotFoundException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.ServerException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.UnexpectedException ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+            catch (Braintree.Exceptions.UpgradeRequiredException ex)
+            {
+                throw new ApplicationException(ex.Message);
             }
         }
     }

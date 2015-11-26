@@ -10,13 +10,13 @@ namespace BrainTreePaymentMethod
     {
         public void RegisterBrainTreeHandlers()
         {
-            Handle.GET("/payment", () =>
+            Handle.GET("/braintree", () =>
             {
-                RootPage master = (RootPage)Self.GET("/payment/rootpage");
+                RootPage master = (RootPage)Self.GET("/braintree/rootpage");
                 return master;
             });
 
-            Handle.GET("/payment/rootpage", () =>
+            Handle.GET("/braintree/rootpage", () =>
             {
                 Session session = Session.Current;
 
@@ -35,29 +35,36 @@ namespace BrainTreePaymentMethod
                 return standalone;
             });
 
-            Handle.GET("/braintree/checkout/{?}", (int objectId) =>
+            Handle.GET("/braintree/partials/credit-card/{?}", (string basketId) =>
             {
-                RootPage master = Self.GET<RootPage>("/payment");
+                return Db.Scope<Json>(() =>
+                {
+                    var page = new CreditCardPage()
+                    {
+                        Data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableId = ?", basketId).First,
+                        Html = "/CreditCard/CreditCardPage.html"
+                    };
 
-                master.CurrentPage = Db.Scope<CustomerDataPage>(() => {
-                    var page = new CustomerDataPage();
+                    var currentYear = DateTime.Now.Year;
+                    
+                    for (var n = 0; n < 10; n++)
+                    {
+                        page.Years.Add(new CreditCardPage.YearsElementJson {
+                            Text = (currentYear+n).ToString(),
+                            Value = (currentYear+n).ToString(),
+                        });
+                    }
 
-                    page.BindData(objectId);
+                    for (var n = 1; n <= 12; n++ )
+                    {
+                        page.Months.Add(new CreditCardPage.MonthsElementJson {
+                            Text = String.Format("{0:00}", n),
+                            Value = String.Format("{0:00}", n)
+                        });
+                    }
 
                     return page;
                 });
-
-                return master;
-            });
-
-            Handle.GET("/payment/finished", () =>
-            {
-                RootPage master = Self.GET<RootPage>("/payment");
-
-                master.CurrentPage = new PaymentFinishedPage();
-
-                return master;
-
             });
         }
     }

@@ -15,50 +15,41 @@ using _GEN2_=System.CodeDom.Compiler.GeneratedCodeAttribute;
 using _ScTemplate_=Starcounter.Templates.Template;
 using BrainTreeApi.Models.Payment;
 using BrainTreeApi.Service.TransactionService;
-using BrainTreeApi.Service.CustomerServices;
-using BrainTreeApi.Models.Company;
 using BrainTreeApi.Models.CreditCard;
-using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.Customer;
 using System.Linq;
-using BrainTreeApi.Validators.Company;
 using FluentValidation.Results;
 using BrainTreeApi.Validators.Customer;
 using BrainTreeApi.Validators.CreditCard;
 using BrainTreeApi.Validators.Payment;
-using BrainTreeApi.Validators.Address;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __CCuLastName__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.LastName;
-using __CCrExpiryYe__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.ExpiryYear;
-using __CCrExpiryMo__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.ExpiryMonth;
-using __CCrCardNumb__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.CardNumber;
-using __CuCreditCa2__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input;
-using __CuCreditCa1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.JsonByExample;
-using __CuCreditCa__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson;
-using __CCoCompanyN1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.Input.CompanyName;
-using __CuCompanyE2__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.Input;
-using __CuCompanyE1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.JsonByExample;
-using __CuCompanyE__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson;
+using __CAdCountryC4__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryCodeAlpha3;
 using __CCoCompanyN__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.Input.CompanyName;
-using __CCrSecurity__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.Input.SecurityNumber;
 using __CuCompanyJ2__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.Input;
+using __CuCompanyJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.JsonByExample;
 using __CuCompanyJ__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson;
 using __CCuFax1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.Input.Fax;
 using __CCuEmail1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.Input.Email;
 using __CCuPhone1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.Input.Phone;
 using __CCuLastName1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.Input.LastName;
 using __CCuFirstNam1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.Input.FirstName;
+using __CuCompanyE__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson;
 using __CuCustomer5__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.Input;
-using __CuCustomer4__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.JsonByExample;
 using __CuCustomer3__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson;
 using __CCuFax__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Fax;
 using __CCuEmail__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Email;
-using __CuCompanyJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.JsonByExample;
-using __CuCreditCa3__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson;
-using __CuCreditCa4__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.JsonByExample;
-using __CuCreditCa5__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.Input;
+using __CCuPhone__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Phone;
+using __CCuLastName__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.LastName;
+using __CCuFirstNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.FirstName;
+using __CuCustomer2__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input;
+using __CuCustomer1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.JsonByExample;
+using __CuCustomer__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson;
+using __CuCustomer4__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.JsonByExample;
+using __CuCompanyE1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.JsonByExample;
+using __CuCompanyE2__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.Input;
+using __CCoCompanyN1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.Input.CompanyName;
 using __CuTotalPay__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.TotalPayableItems;
 using __CuAmount__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Amount;
 using __CuHtml__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Html;
@@ -80,16 +71,10 @@ using __CCuFirstNam2__ = global::BrainTreePaymentMethod.CustomerDataPage.Custome
 using __CuCustomer8__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.Input;
 using __CuCustomer7__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.JsonByExample;
 using __CuCustomer6__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson;
-using __CCrSecurity1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.Input.SecurityNumber;
-using __CCrExpiryYe1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.Input.ExpiryYear;
-using __CCrExpiryMo1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.Input.ExpiryMonth;
-using __CCrCardNumb1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.Input.CardNumber;
-using __CCuPhone__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.Phone;
+using __CAdCountryC5__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryCodeNumeric;
 using __CuPay__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.Pay;
 using __CuRedirect__ = global::BrainTreePaymentMethod.CustomerDataPage.Input.RedirectUrl;
-using __CuCustomer2__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input;
-using __CErError__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input.Error;
-using __CuErrorsEl2__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input;
+using __CAdCountryN1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryName;
 using __CuErrorsEl1__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.JsonByExample;
 using __CErSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.JsonByExample.Schema;
 using __Json1__ = global::Starcounter.Json.JsonByExample;
@@ -99,10 +84,8 @@ using __TBool__ = global::Starcounter.Templates.TBool;
 using __CDiSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.DialogJson.JsonByExample.Schema;
 using __TLong__ = global::Starcounter.Templates.TLong;
 using __TDecimal__ = global::Starcounter.Templates.TDecimal;
-using __TArray__ = global::Starcounter.Templates.TArray<global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson>;
+using __CuErrorsEl2__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input;
 using __CCuSchema2__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerLabelJson.JsonByExample.Schema;
-using __CCrSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardJson.JsonByExample.Schema;
-using __CCoSchema1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.JsonByExample.Schema;
 using __CCoSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyJson.JsonByExample.Schema;
 using __CCuSchema1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerErrorsJson.JsonByExample.Schema;
 using __CCuSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.JsonByExample.Schema;
@@ -112,27 +95,21 @@ using __CAdSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJso
 using __TString__ = global::Starcounter.Templates.TString;
 using __CuSchema__ = global::BrainTreePaymentMethod.CustomerDataPage.JsonByExample.Schema;
 using __Customer__ = global::BrainTreePaymentMethod.CustomerDataPage;
-using __CCrSchema1__ = global::BrainTreePaymentMethod.CustomerDataPage.CreditCardErrorsJson.JsonByExample.Schema;
-using __CCuFirstNam__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.Input.FirstName;
-using __Customer1__ = global::BrainTreePaymentMethod.CustomerDataPage.JsonByExample;
-using __CuAddressJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.JsonByExample;
-using __CuCustomer1__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson.JsonByExample;
-using __CuCustomer__ = global::BrainTreePaymentMethod.CustomerDataPage.CustomerJson;
-using __CAdCountryC5__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryCodeNumeric;
-using __CAdCountryC4__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryCodeAlpha3;
+using __CCoSchema1__ = global::BrainTreePaymentMethod.CustomerDataPage.CompanyErrorsJson.JsonByExample.Schema;
 using __CAdCountryC3__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryCodeAlpha2;
-using __CAdCountryN1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.CountryName;
+using __CErError__ = global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson.Input.Error;
+using __Customer1__ = global::BrainTreePaymentMethod.CustomerDataPage.JsonByExample;
 using __CAdPostalCo1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.PostalCode;
 using __CAdRegion1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.Region;
 using __CAdLocality1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.Locality;
 using __CAdExtended1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.ExtendedAddress;
 using __CAdStreetAd1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input.StreetAddress;
-using __CuAddressJ__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson;
 using __CuAddressE2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.Input;
+using __CuAddressE1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.JsonByExample;
 using __CuAddressE__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson;
 using __CAdCountryC2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeNumeric;
+using __TArray__ = global::Starcounter.Templates.TArray<global::BrainTreePaymentMethod.CustomerDataPage.ErrorsElementJson>;
 using __CAdCountryC1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha3;
-using __CAdCountryC__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha2;
 using __CAdCountryN__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryName;
 using __CAdPostalCo__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.PostalCode;
 using __CAdRegion__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.Region;
@@ -140,7 +117,9 @@ using __CAdLocality__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJ
 using __CAdExtended__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.ExtendedAddress;
 using __CAdStreetAd__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.StreetAddress;
 using __CuAddressJ2__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input;
-using __CuAddressE1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressErrorsJson.JsonByExample;
+using __CuAddressJ1__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.JsonByExample;
+using __CuAddressJ__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson;
+using __CAdCountryC__ = global::BrainTreePaymentMethod.CustomerDataPage.AddressJson.Input.CountryCodeAlpha2;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -173,16 +152,6 @@ public class CustomerDataPage_json : s::TemplateAttribute {
     
     #line hidden
     public class CompanyErrors : s::TemplateAttribute {
-    }
-    #line default
-    
-    #line hidden
-    public class CreditCard : s::TemplateAttribute {
-    }
-    #line default
-    
-    #line hidden
-    public class CreditCardErrors : s::TemplateAttribute {
     }
     #line default
     
@@ -226,8 +195,6 @@ public partial class CustomerDataPage : Page {
     private __CuCustomer3__ __bf__CustomerErrors__;
     private __CuCompanyJ__ __bf__Company__;
     private __CuCompanyE__ __bf__CompanyErrors__;
-    private __CuCreditCa__ __bf__CreditCard__;
-    private __CuCreditCa3__ __bf__CreditCardErrors__;
     private __CuCustomer6__ __bf__CustomerLabel__;
     private System.Decimal __bf__Amount__;
     private System.Int64 __bf__TotalPayableItems__;
@@ -263,10 +230,6 @@ public partial class CustomerDataPage : Page {
                 Company.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__Company__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__Company__ = (__CuCompanyJ__)_v_; }, false);
                 CompanyErrors = Add<__CCoSchema1__>("CompanyErrors");
                 CompanyErrors.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CompanyErrors__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CompanyErrors__ = (__CuCompanyE__)_v_; }, false);
-                CreditCard = Add<__CCrSchema__>("CreditCard");
-                CreditCard.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CreditCard__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CreditCard__ = (__CuCreditCa__)_v_; }, false);
-                CreditCardErrors = Add<__CCrSchema1__>("CreditCardErrors");
-                CreditCardErrors.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CreditCardErrors__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CreditCardErrors__ = (__CuCreditCa3__)_v_; }, false);
                 CustomerLabel = Add<__CCuSchema2__>("CustomerLabel");
                 CustomerLabel.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CustomerLabel__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CustomerLabel__ = (__CuCustomer6__)_v_; }, false);
                 Amount = Add<__TDecimal__>("Amount");
@@ -298,8 +261,6 @@ public partial class CustomerDataPage : Page {
             public __CCuSchema1__ CustomerErrors;
             public __CCoSchema__ Company;
             public __CCoSchema1__ CompanyErrors;
-            public __CCrSchema__ CreditCard;
-            public __CCrSchema1__ CreditCardErrors;
             public __CCuSchema2__ CustomerLabel;
             public __TDecimal__ Amount;
             public __TLong__ TotalPayableItems;
@@ -396,36 +357,12 @@ public partial class CustomerDataPage : Page {
 #line default
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public __CuCreditCa__ CreditCard {
-#line 50 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return (__CuCreditCa__)Template.CreditCard.Getter(this); }
-#line 50 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.CreditCard.Setter(this, value); } }
-#line default
-
-    [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public __CuCreditCa3__ CreditCardErrors {
-#line 56 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return (__CuCreditCa3__)Template.CreditCardErrors.Getter(this); }
-#line 56 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.CreditCardErrors.Setter(this, value); } }
-#line default
-
-    [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __CuCustomer6__ CustomerLabel {
-#line 66 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 55 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return (__CuCustomer6__)Template.CustomerLabel.Getter(this); }
-#line 66 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 55 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.CustomerLabel.Setter(this, value); } }
@@ -433,11 +370,11 @@ public partial class CustomerDataPage : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public System.Decimal Amount {
-#line 67 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 56 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Amount.Getter(this); }
-#line 67 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 56 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Amount.Setter(this, value); } }
@@ -445,11 +382,11 @@ public partial class CustomerDataPage : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public System.Int64 TotalPayableItems {
-#line 68 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 57 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.TotalPayableItems.Getter(this); }
-#line 68 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 57 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.TotalPayableItems.Setter(this, value); } }
@@ -457,11 +394,11 @@ public partial class CustomerDataPage : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public System.Int64 Pay {
-#line 69 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 58 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Pay.Getter(this); }
-#line 69 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 58 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Pay.Setter(this, value); } }
@@ -469,11 +406,11 @@ public partial class CustomerDataPage : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __CuDialogJs__ Dialog {
-#line 73 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 62 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return (__CuDialogJs__)Template.Dialog.Getter(this); }
-#line 73 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 62 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Dialog.Setter(this, value); } }
@@ -481,11 +418,11 @@ public partial class CustomerDataPage : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Errors {
-#line 78 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 67 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Errors.Getter(this); }
-#line 78 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 67 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Errors.Setter(this, value); } }
@@ -493,11 +430,11 @@ public partial class CustomerDataPage : Page {
 
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public System.String RedirectUrl {
-#line 80 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 69 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.RedirectUrl.Getter(this); }
-#line 80 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 69 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.RedirectUrl.Setter(this, value); } }
@@ -1463,278 +1400,6 @@ public partial class CustomerDataPage : Page {
     
     #line hidden
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public class CreditCardJson : __Json__ {
-        #line hidden
-        [_GEN2_("Starcounter","2.0")]
-        public static __CCrSchema__ DefaultTemplate = new __CCrSchema__();
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public CreditCardJson() { }
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public CreditCardJson(__CCrSchema__ template) { Template = template; }
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        protected override _ScTemplate_ GetDefaultTemplate() { return DefaultTemplate; }
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public new __CCrSchema__ Template { get { return (__CCrSchema__)base.Template; } set { base.Template = value; } }
-        public override bool IsCodegenerated { get { return true; } }
-        private System.String __bf__CardNumber__;
-        private System.String __bf__ExpiryMonth__;
-        private System.String __bf__ExpiryYear__;
-        private System.String __bf__SecurityNumber__;
-        #line default
-        
-        #line hidden
-        public static class JsonByExample {
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class Schema : __TObject__ {
-                public Schema()
-                    : base() {
-                    InstanceType = typeof(__CuCreditCa__);
-                    ClassName = "CreditCardJson";
-                    Properties.ClearExposed();
-                    CardNumber = Add<__TString__>("CardNumber$");
-                    CardNumber.DefaultValue = "";
-                    CardNumber.Editable = true;
-                    CardNumber.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__CardNumber__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__CardNumber__ = (System.String)_v_; }, false);
-                    ExpiryMonth = Add<__TString__>("ExpiryMonth$");
-                    ExpiryMonth.DefaultValue = "0";
-                    ExpiryMonth.Editable = true;
-                    ExpiryMonth.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__ExpiryMonth__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__ExpiryMonth__ = (System.String)_v_; }, false);
-                    ExpiryYear = Add<__TString__>("ExpiryYear$");
-                    ExpiryYear.DefaultValue = "0";
-                    ExpiryYear.Editable = true;
-                    ExpiryYear.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__ExpiryYear__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__ExpiryYear__ = (System.String)_v_; }, false);
-                    SecurityNumber = Add<__TString__>("SecurityNumber$");
-                    SecurityNumber.DefaultValue = "";
-                    SecurityNumber.Editable = true;
-                    SecurityNumber.SetCustomAccessors((_p_) => { return ((__CuCreditCa__)_p_).__bf__SecurityNumber__; }, (_p_, _v_) => { ((__CuCreditCa__)_p_).__bf__SecurityNumber__ = (System.String)_v_; }, false);
-                }
-                public override object CreateInstance(s.Json parent) { return new __CuCreditCa__(this) { Parent = parent }; }
-                public __TString__ CardNumber;
-                public __TString__ ExpiryMonth;
-                public __TString__ ExpiryYear;
-                public __TString__ SecurityNumber;
-            }
-            #line default
-        }
-        #line default
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String CardNumber {
-#line 46 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.CardNumber.Getter(this); }
-#line 46 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.CardNumber.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String ExpiryMonth {
-#line 47 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.ExpiryMonth.Getter(this); }
-#line 47 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.ExpiryMonth.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String ExpiryYear {
-#line 48 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.ExpiryYear.Getter(this); }
-#line 48 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.ExpiryYear.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String SecurityNumber {
-#line 50 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.SecurityNumber.Getter(this); }
-#line 50 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.SecurityNumber.Setter(this, value); } }
-#line default
-
-        
-        #line hidden
-        public static class Input {
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class CardNumber : Input<__CuCreditCa__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class ExpiryMonth : Input<__CuCreditCa__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class ExpiryYear : Input<__CuCreditCa__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class SecurityNumber : Input<__CuCreditCa__, __TString__, string> {
-            }
-            #line default
-        }
-        #line default
-    }
-    #line default
-    
-    #line hidden
-    [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public class CreditCardErrorsJson : __Json__ {
-        #line hidden
-        [_GEN2_("Starcounter","2.0")]
-        public static __CCrSchema1__ DefaultTemplate = new __CCrSchema1__();
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public CreditCardErrorsJson() { }
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public CreditCardErrorsJson(__CCrSchema1__ template) { Template = template; }
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        protected override _ScTemplate_ GetDefaultTemplate() { return DefaultTemplate; }
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public new __CCrSchema1__ Template { get { return (__CCrSchema1__)base.Template; } set { base.Template = value; } }
-        public override bool IsCodegenerated { get { return true; } }
-        private System.String __bf__CardNumber__;
-        private System.String __bf__ExpiryMonth__;
-        private System.String __bf__ExpiryYear__;
-        private System.String __bf__SecurityNumber__;
-        #line default
-        
-        #line hidden
-        public static class JsonByExample {
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class Schema : __TObject__ {
-                public Schema()
-                    : base() {
-                    InstanceType = typeof(__CuCreditCa3__);
-                    ClassName = "CreditCardErrorsJson";
-                    Properties.ClearExposed();
-                    CardNumber = Add<__TString__>("CardNumber");
-                    CardNumber.DefaultValue = "";
-                    CardNumber.SetCustomAccessors((_p_) => { return ((__CuCreditCa3__)_p_).__bf__CardNumber__; }, (_p_, _v_) => { ((__CuCreditCa3__)_p_).__bf__CardNumber__ = (System.String)_v_; }, false);
-                    ExpiryMonth = Add<__TString__>("ExpiryMonth");
-                    ExpiryMonth.DefaultValue = "";
-                    ExpiryMonth.SetCustomAccessors((_p_) => { return ((__CuCreditCa3__)_p_).__bf__ExpiryMonth__; }, (_p_, _v_) => { ((__CuCreditCa3__)_p_).__bf__ExpiryMonth__ = (System.String)_v_; }, false);
-                    ExpiryYear = Add<__TString__>("ExpiryYear");
-                    ExpiryYear.DefaultValue = "";
-                    ExpiryYear.SetCustomAccessors((_p_) => { return ((__CuCreditCa3__)_p_).__bf__ExpiryYear__; }, (_p_, _v_) => { ((__CuCreditCa3__)_p_).__bf__ExpiryYear__ = (System.String)_v_; }, false);
-                    SecurityNumber = Add<__TString__>("SecurityNumber");
-                    SecurityNumber.DefaultValue = "";
-                    SecurityNumber.SetCustomAccessors((_p_) => { return ((__CuCreditCa3__)_p_).__bf__SecurityNumber__; }, (_p_, _v_) => { ((__CuCreditCa3__)_p_).__bf__SecurityNumber__ = (System.String)_v_; }, false);
-                }
-                public override object CreateInstance(s.Json parent) { return new __CuCreditCa3__(this) { Parent = parent }; }
-                public __TString__ CardNumber;
-                public __TString__ ExpiryMonth;
-                public __TString__ ExpiryYear;
-                public __TString__ SecurityNumber;
-            }
-            #line default
-        }
-        #line default
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String CardNumber {
-#line 52 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.CardNumber.Getter(this); }
-#line 52 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.CardNumber.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String ExpiryMonth {
-#line 53 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.ExpiryMonth.Getter(this); }
-#line 53 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.ExpiryMonth.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String ExpiryYear {
-#line 54 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.ExpiryYear.Getter(this); }
-#line 54 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.ExpiryYear.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String SecurityNumber {
-#line 56 "ViewModels\CustomerData\CustomerDataPage.json"
-    get {
-#line hidden
-        return Template.SecurityNumber.Getter(this); }
-#line 56 "ViewModels\CustomerData\CustomerDataPage.json"
-    set {
-#line hidden
-        Template.SecurityNumber.Setter(this, value); } }
-#line default
-
-        
-        #line hidden
-        public static class Input {
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class CardNumber : Input<__CuCreditCa3__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class ExpiryMonth : Input<__CuCreditCa3__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class ExpiryYear : Input<__CuCreditCa3__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public class SecurityNumber : Input<__CuCreditCa3__, __TString__, string> {
-            }
-            #line default
-        }
-        #line default
-    }
-    #line default
-    
-    #line hidden
-    [_GEN1_][_GEN2_("Starcounter","2.0")]
     public class CustomerLabelJson : __Json__ {
         #line hidden
         [_GEN2_("Starcounter","2.0")]
@@ -1817,11 +1482,11 @@ public partial class CustomerDataPage : Page {
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String FirstNameName {
-#line 58 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 47 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.FirstNameName.Getter(this); }
-#line 58 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 47 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.FirstNameName.Setter(this, value); } }
@@ -1829,11 +1494,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String LastNameName {
-#line 59 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 48 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.LastNameName.Getter(this); }
-#line 59 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 48 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.LastNameName.Setter(this, value); } }
@@ -1841,11 +1506,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String EmailName {
-#line 60 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 49 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.EmailName.Getter(this); }
-#line 60 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 49 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.EmailName.Setter(this, value); } }
@@ -1853,11 +1518,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String Address1Name {
-#line 61 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 50 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Address1Name.Getter(this); }
-#line 61 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 50 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Address1Name.Setter(this, value); } }
@@ -1865,11 +1530,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String ZipPostalCodeName {
-#line 62 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 51 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.ZipPostalCodeName.Getter(this); }
-#line 62 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 51 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.ZipPostalCodeName.Setter(this, value); } }
@@ -1877,11 +1542,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String TownName {
-#line 63 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 52 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.TownName.Getter(this); }
-#line 63 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 52 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.TownName.Setter(this, value); } }
@@ -1889,11 +1554,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String StateName {
-#line 64 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 53 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.StateName.Getter(this); }
-#line 64 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 53 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.StateName.Setter(this, value); } }
@@ -1901,11 +1566,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String ProvinceName {
-#line 66 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 55 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.ProvinceName.Getter(this); }
-#line 66 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 55 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.ProvinceName.Setter(this, value); } }
@@ -2027,11 +1692,11 @@ public partial class CustomerDataPage : Page {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String Message {
-#line 73 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 62 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Message.Getter(this); }
-#line 73 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 62 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Message.Setter(this, value); } }
@@ -2098,11 +1763,11 @@ public partial class CustomerDataPage : Page {
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String Error {
-#line 77 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 66 "ViewModels\CustomerData\CustomerDataPage.json"
     get {
 #line hidden
         return Template.Error.Getter(this); }
-#line 77 "ViewModels\CustomerData\CustomerDataPage.json"
+#line 66 "ViewModels\CustomerData\CustomerDataPage.json"
     set {
 #line hidden
         Template.Error.Setter(this, value); } }

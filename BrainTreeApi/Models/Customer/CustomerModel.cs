@@ -1,6 +1,4 @@
-﻿using BrainTreeApi.Models.Address;
-
-namespace BrainTreeApi.Models.Customer
+﻿namespace BrainTreeApi.Models.Customer
 {
     public class CustomerModel
     {

@@ -2,278 +2,242 @@ using Starcounter;
 using System;
 using BrainTreeApi.Models.Payment;
 using BrainTreeApi.Service.TransactionService;
-using BrainTreeApi.Service.CustomerServices;
-using BrainTreeApi.Models.Company;
 using BrainTreeApi.Models.CreditCard;
-using BrainTreeApi.Models.Address;
 using BrainTreeApi.Models.Customer;
 using System.Linq;
-using BrainTreeApi.Validators.Company;
 using System.Collections.Generic;
 using FluentValidation.Results;
 using BrainTreeApi.Validators.Customer;
 using BrainTreeApi.Validators.CreditCard;
 using BrainTreeApi.Validators.Payment;
-using BrainTreeApi.Validators.Address;
 
 namespace BrainTreePaymentMethod
 {
     public partial class CustomerDataPage : Page
     {
-        public void BindData(int basketId)
+        public void BindData(string basketId)
         {
-            var data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", basketId).First;
+            //var data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableNo = ?", basketId).First;
 
-            this.Data = data;
+            //this.Data = default(this.Data);
 
-            this.Amount = data.TotalGrossPrice;
+            //this.Amount = data.TotalGrossPrice;
 
-            this.TotalPayableItems = data.Items.Count();
+            //this.TotalPayableItems = data.Items.Count();
         }
         
         void Handle(Input.Pay action)
         {
-            var page = (CustomerDataPage)this;
+            //var page = (CustomerDataPage)this;
 
-            this.Errors.Clear();
+            //this.Errors.Clear();
 
-            var formValid = new List<bool>();
+            //var formValid = new List<bool>();
 
-            var addressModel = MappingDataToAddress(page.Address);
-            formValid.Add(ValidAddressModel(addressModel));
+            //var addressModel = MappingDataToAddress(page.Address);
+            //formValid.Add(ValidAddressModel(addressModel));
 
-            var customerModel = MappingDataToCustomer(page.Customer);
-            formValid.Add(ValidCustomerModel(customerModel));
+            //var customerModel = MappingDataToCustomer(page.Customer);
+            //formValid.Add(ValidCustomerModel(customerModel));
 
-            var companyModel = MappingDataToCompany(page.Company);
-            formValid.Add(ValidCompanyModel(companyModel));
+            //var companyModel = MappingDataToCompany(page.Company);
+            //formValid.Add(ValidCompanyModel(companyModel));
 
-            var creditCardModel = MappingDataToCreditCard(page.CreditCard);
-            formValid.Add(ValidCreditCardModel(creditCardModel));
+            ////var creditCardModel = MappingDataToCreditCard(page.CreditCard);
+            ////formValid.Add(ValidCreditCardModel(creditCardModel));
 
-            var paymentModel = MappingDataToCreditCard(this);
-            formValid.Add(ValidPaymentModel(paymentModel));
+            //var paymentModel = MappingDataToCreditCard(this);
+            //formValid.Add(ValidPaymentModel(paymentModel));
 
-            var isFormValid = formValid.TrueForAll(jk => { return jk; }) || formValid.TrueForAll(jk => { return !jk; });
+            //var isFormValid = formValid.TrueForAll(jk => { return jk; }) || formValid.TrueForAll(jk => { return !jk; });
 
-            if(!isFormValid)
-            {
-                ShowHideDialog();
-                return;
-            }
+            //if(!isFormValid)
+            //{
+            //    ShowHideDialog();
+            //    return;
+            //}
             
-            var customer = BrainTreeApi.Service.CustomerServices.Customer.CreateCustomer(customerModel);
-            var customerId = string.Empty;
-            if (!customer.Item1)
-            {
-                this.Errors.Add(new ErrorsElementJson
-                {
-                    Error = customer.Item2
-                });
+            //var customer = BrainTreeApi.Service.CustomerServices.Customer.CreateCustomer(customerModel);
+            //var customerId = string.Empty;
+            //if (!customer.Item1)
+            //{
+            //    this.Errors.Add(new ErrorsElementJson
+            //    {
+            //        Error = customer.Item2
+            //    });
 
-                ShowHideDialog();
-                return;
-            }
+            //    ShowHideDialog();
+            //    return;
+            //}
 
-            customerModel.CustomerId = customer.Item2;
+            //customerModel.CustomerId = customer.Item2;
 
-            var billingAddress = BrainTreeApi.Service.CustomerServices.Customer.CreateAddress(customerModel, addressModel, companyModel);
-            var billingAddressId = string.Empty;
+            //var billingAddress = BrainTreeApi.Service.CustomerServices.Customer.CreateAddress(customerModel, addressModel, companyModel);
+            //var billingAddressId = string.Empty;
 
-            if (!billingAddress.Item1)
-            {
-                this.Errors.Add(new ErrorsElementJson
-                {
-                    Error = billingAddress.Item2
-                });
+            //if (!billingAddress.Item1)
+            //{
+            //    this.Errors.Add(new ErrorsElementJson
+            //    {
+            //        Error = billingAddress.Item2
+            //    });
 
-                ShowHideDialog();
-                return;
-            }
+            //    ShowHideDialog();
+            //    return;
+            //}
 
-            billingAddressId = billingAddress.Item2;
-            var result = CreateTransaction(customerModel.CustomerId, billingAddressId, creditCardModel, paymentModel);
+            //billingAddressId = billingAddress.Item2;
+            //var result = CreateTransaction(customerModel.CustomerId, billingAddressId, creditCardModel, paymentModel);
 
-            if (!result.Item1)
-            {
-                this.Errors.Add(new ErrorsElementJson
-                {
-                    Error = result.Item2
-                });
+            //if (!result.Item1)
+            //{
+            //    this.Errors.Add(new ErrorsElementJson
+            //    {
+            //        Error = result.Item2
+            //    });
 
-                ShowHideDialog();
-                return;
-            }
+            //    ShowHideDialog();
+            //    return;
+            //}
 
-            ShowHideDialog();
-            this.RedirectUrl = "/payment/finished";
+            //ShowHideDialog();
+            //this.RedirectUrl = "/payment/finished";
         }
 
-        private Tuple<bool, string> CreateTransaction(string customerId, string billingAddressId, CreditCardModel creditCard, PaymentModel payment)
-        {
-            return BrainTreeApi.Service.TransactionService.Transaction.CreateTransactionWithBillingAddress(customerId, billingAddressId, creditCard, payment);
-        }
+        //private Tuple<bool, string> CreateTransaction(string customerId, string billingAddressId, CreditCardModel creditCard, PaymentModel payment)
+        //{
+        //    return BrainTreeApi.Service.TransactionService.Transaction.CreateTransactionWithBillingAddress(customerId, billingAddressId, creditCard, payment);
+        //}
 
-        #region DialogShowHide
+        //#region DialogShowHide
         
-        protected void ShowHideDialog(string message = "", bool isProcess = false)
-        {
-            this.Dialog.IsProcess = isProcess;
-            this.Dialog.Message = message;
-        }
+        //protected void ShowHideDialog(string message = "", bool isProcess = false)
+        //{
+        //    this.Dialog.IsProcess = isProcess;
+        //    this.Dialog.Message = message;
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Mapping JSON TO MODEL
+        //#region Mapping JSON TO MODEL
 
-        private AddressModel MappingDataToAddress(CustomerDataPage.AddressJson address)
-        {
-            return new AddressModel
-            {
-                StreetAddress = address.StreetAddress,
-                ExtendedAddress = address.ExtendedAddress,
-                PostalCode = address.PostalCode,
-                Locality = address.Locality,
-                Region = address.Region,
-                CountryName = address.CountryName,
-                CountryCodeNumeric = address.CountryCodeNumeric,
-                CountryCodeAlpha2 = address.CountryCodeAlpha2,
-                CountryCodeAlpha3 = address.CountryCodeAlpha3,
-            };
-        }
+        //private AddressModel MappingDataToAddress(CustomerDataPage.AddressJson address)
+        //{
+        //    return new AddressModel
+        //    {
+        //        StreetAddress = address.StreetAddress,
+        //        ExtendedAddress = address.ExtendedAddress,
+        //        PostalCode = address.PostalCode,
+        //        Locality = address.Locality,
+        //        Region = address.Region,
+        //        CountryName = address.CountryName,
+        //        CountryCodeNumeric = address.CountryCodeNumeric,
+        //        CountryCodeAlpha2 = address.CountryCodeAlpha2,
+        //        CountryCodeAlpha3 = address.CountryCodeAlpha3,
+        //    };
+        //}
 
-        private CustomerModel MappingDataToCustomer(CustomerDataPage.CustomerJson customer)
-        {
-            return new CustomerModel
-            {
-                CustomerId = "",
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Email = customer.Email,
-                Fax = customer.Fax,
-                Phone = customer.Phone,
-                Website = string.Empty
-            };
-        }
 
-        private CreditCardModel MappingDataToCreditCard(CustomerDataPage.CreditCardJson creditCard)
-        {
-            return new CreditCardModel
-            {
-                CardNumber = creditCard.CardNumber,
-                ExpiryMonth = Int32.Parse(creditCard.ExpiryMonth),
-                ExpiryYear = Int32.Parse(creditCard.ExpiryYear),
-                SecurityNumber = creditCard.SecurityNumber
-            };
-        }
 
-        private PaymentModel MappingDataToCreditCard(CustomerDataPage payment)
-        {
-            return new PaymentModel
-            {
-                Amount = payment.Amount
-            };
-        }
+        //private CompanyModel MappingDataToCompany(CustomerDataPage.CompanyJson company)
+        //{
+        //    return new CompanyModel
+        //    {
+        //        CompanyName = company.CompanyName
+        //    };
+        //}
 
-        private CompanyModel MappingDataToCompany(CustomerDataPage.CompanyJson company)
-        {
-            return new CompanyModel
-            {
-                CompanyName = company.CompanyName
-            };
-        }
-
-        #endregion
+        //#endregion
         
-        #region CustomValidators
+        //#region CustomValidators
 
-        private bool ValidCustomerModel(CustomerModel customer)
-        {
-            this.CustomerErrors = new CustomerErrorsJson();
+        //private bool ValidCustomerModel(CustomerModel customer)
+        //{
+        //    this.CustomerErrors = new CustomerErrorsJson();
 
-            var isValidCustomer = new CustomerValidator().Validate(customer);
+        //    var isValidCustomer = new CustomerValidator().Validate(customer);
 
-            if (isValidCustomer.Errors.Count > 0)
-            {
-                foreach (var inValidFields in isValidCustomer.Errors)
-                {
-                    this.CustomerErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-            }
+        //    if (isValidCustomer.Errors.Count > 0)
+        //    {
+        //        foreach (var inValidFields in isValidCustomer.Errors)
+        //        {
+        //            this.CustomerErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+        //        }
+        //    }
 
-            return isValidCustomer.IsValid;
-        }
+        //    return isValidCustomer.IsValid;
+        //}
 
-        private bool ValidAddressModel(AddressModel address)
-        {
-            this.AddressErrors = new AddressErrorsJson();
+        //private bool ValidAddressModel(AddressModel address)
+        //{
+        //    this.AddressErrors = new AddressErrorsJson();
 
-            var isValidAddress = new AddressValidator().Validate(address);
+        //    var isValidAddress = new AddressValidator().Validate(address);
 
-            if(isValidAddress.Errors.Count > 0)
-            {
-                foreach (var inValidFields in isValidAddress.Errors)
-                {
-                    this.AddressErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-            }
+        //    if(isValidAddress.Errors.Count > 0)
+        //    {
+        //        foreach (var inValidFields in isValidAddress.Errors)
+        //        {
+        //            this.AddressErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+        //        }
+        //    }
 
-            return isValidAddress.IsValid;
-        }
+        //    return isValidAddress.IsValid;
+        //}
 
-        private bool ValidCompanyModel(CompanyModel company)
-        {
-            this.CompanyErrors = new CompanyErrorsJson();
+        //private bool ValidCompanyModel(CompanyModel company)
+        //{
+        //    this.CompanyErrors = new CompanyErrorsJson();
 
-            var isValidCompany = new CompanyValidator().Validate(company);
+        //    var isValidCompany = new CompanyValidator().Validate(company);
 
-            if (isValidCompany.Errors.Count > 0)
-            {
-                foreach (var inValidFields in isValidCompany.Errors)
-                {
-                    this.CompanyErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
-            }
+        //    if (isValidCompany.Errors.Count > 0)
+        //    {
+        //        foreach (var inValidFields in isValidCompany.Errors)
+        //        {
+        //            this.CompanyErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+        //        }
+        //    }
 
-            return isValidCompany.IsValid;
-        }
+        //    return isValidCompany.IsValid;
+        //}
 
-        private bool ValidCreditCardModel(CreditCardModel creditCard)
-        {
-            this.CreditCardErrors = new CreditCardErrorsJson();
+        //private bool ValidCreditCardModel(CreditCardModel creditCard)
+        //{
+        //    this.CreditCardErrors = new CreditCardErrorsJson();
 
-            var isValidCreditCard = new CreditCardValidator().Validate(creditCard);
+        //    var isValidCreditCard = new CreditCardValidator().Validate(creditCard);
 
-            if(isValidCreditCard.Errors.Count > 0)
-            { 
-                foreach (var inValidFields in isValidCreditCard.Errors)
-                {
-                    this.CreditCardErrors[inValidFields.PropertyName] = "has-error has-feedbac";
-                }
+        //    if(isValidCreditCard.Errors.Count > 0)
+        //    { 
+        //        foreach (var inValidFields in isValidCreditCard.Errors)
+        //        {
+        //            this.CreditCardErrors[inValidFields.PropertyName] = "has-error has-feedbac";
+        //        }
 
-            }
+        //    }
             
-            return isValidCreditCard.IsValid;
-        }
+        //    return isValidCreditCard.IsValid;
+        //}
 
-        private bool ValidPaymentModel(PaymentModel payment)
-        {
-            var isValidPayment = new PaymentValidator().Validate(payment);
+        //private bool ValidPaymentModel(PaymentModel payment)
+        //{
+        //    var isValidPayment = new PaymentValidator().Validate(payment);
 
-            if (isValidPayment.Errors.Count > 0)
-            {
-                foreach (var error in isValidPayment.Errors)
-                {
-                    this.Errors.Add(new ErrorsElementJson
-                    {
-                        Error = error.ErrorMessage
-                    });
-                }
-            }
+        //    if (isValidPayment.Errors.Count > 0)
+        //    {
+        //        foreach (var error in isValidPayment.Errors)
+        //        {
+        //            this.Errors.Add(new ErrorsElementJson
+        //            {
+        //                Error = error.ErrorMessage
+        //            });
+        //        }
+        //    }
 
-            return isValidPayment.IsValid;
-        }
+        //    return isValidPayment.IsValid;
+        //}
 
-        #endregion
+        //#endregion
     }
 }
