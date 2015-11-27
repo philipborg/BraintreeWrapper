@@ -26,13 +26,11 @@ namespace BrainTreeApp
                     var creditCard = MappingDataToCreditCard(creditCardJson);
                     var payment = MappingDataToPayment(payable);
 
-                    var request = Serializator.ToSerialize(customer);
-
                     BrainTreeApi.Service.TransactionService.Transaction.CreateTransactionWithCustomer(customer, creditCard, payment);
                 }
                 catch (ApplicationException ex)
                 {
-                    SaveTransaction("Start", ex.Message, false);
+                    SaveTransaction(Serializator.SerializeRequest(), Serializator.SerializeResponse(ex.Message));
                 }
                 catch (Exception ex)
                 {
@@ -48,7 +46,7 @@ namespace BrainTreeApp
                 finally
                 {
                     if(this.Errors.Count == 0)
-                        SaveTransaction("Start", string.Empty, true);
+                        SaveTransaction(Serializator.SerializeRequest(), Serializator.SerializeResponse(), true);
                 }
         }
 
@@ -65,37 +63,54 @@ namespace BrainTreeApp
             });
         }
 
-
         #region SIMPLE MAPPING
 
         private CustomerModel MappingDataToCustomer(PayableCustomer customer)
         {
-            return new CustomerModel
+            var model = new CustomerModel
             {
                 CustomerId = string.Empty,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 Email = customer.Email
             };
-        }
 
+            var obj = Serializator.ToSerialize(model, false, true, true);
+            if (!string.IsNullOrEmpty(obj))
+                Parser.AppendXml(obj);
+
+            return model;
+        }
+        
         private CreditCardModel MappingDataToCreditCard(CreditCardJson creditCard)
         {
-            return new CreditCardModel
+            var model = new CreditCardModel
             {
                 CardNumber = creditCard.CardNumber,
                 ExpiryMonth = Int32.Parse(creditCard.ExpiryMonth),
                 ExpiryYear = Int32.Parse(creditCard.ExpiryYear),
                 SecurityNumber = creditCard.SecurityNumber
             };
+
+            var obj = Serializator.ToSerialize(model, false, true, true);
+            if (!string.IsNullOrEmpty(obj))
+                Parser.AppendXml(obj);
+
+            return model;
         }
 
         private PaymentModel MappingDataToPayment(Payable payment)
         {
-            return new PaymentModel
+            var model = new PaymentModel
             {
                 Amount = payment.TotalGrossPrice
             };
+
+            var obj = Serializator.ToSerialize(model, false, true, true);
+            if (!string.IsNullOrEmpty(obj))
+                Parser.AppendXml(obj);
+
+            return model;
         }
 
         #endregion

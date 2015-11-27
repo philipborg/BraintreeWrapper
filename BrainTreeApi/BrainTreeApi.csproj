@@ -51,7 +51,10 @@
     <Compile Include="Common\BrainTreeConfig.cs" />
     <Compile Include="Common\BrainTreeSerivce.cs" />
     <Compile Include="Enums\Enviroment.cs" />
+    <Compile Include="Helpers\Parser.cs" />
     <Compile Include="Helpers\Serializator.cs" />
+    <Compile Include="Models\Request\RequestModel.cs" />
+    <Compile Include="Models\Response\ResponseModel.cs" />
     <Compile Include="Models\Setting\SettingModel.cs" />
     <Compile Include="Models\CreditCard\CreditCardModel.cs" />
     <Compile Include="Models\Customer\CustomerModel.cs" />
