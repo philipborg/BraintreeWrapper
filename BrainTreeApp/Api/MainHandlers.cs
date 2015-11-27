@@ -11,7 +11,7 @@ namespace BrainTreePaymentMethod
     {
         public void RegisterLauncher(string appName, string description)
         {
-            Handle.GET("/payment/app-name", () =>
+            Handle.GET("/braintree/app-name", () =>
             {
                 return new AppName
                 {
@@ -20,11 +20,11 @@ namespace BrainTreePaymentMethod
                 };
             });
 
-            Handle.GET("/payment/app-icon", () =>
+            Handle.GET("/braintree/app-icon", () =>
             {
                 Page p = new Page()
                 {
-                    Html = "/payment/ViewModels/AppIconPage.html"
+                    Html = "/braintree/AppIconPage.html"
                 };
                 return p;
             });

@@ -28,7 +28,7 @@ namespace BrainTreePaymentMethod
                 if (session == null)
                 {
                     session = new Session(SessionOptions.PatchVersioning);
-                    standalone.Html = "/RootPage.html";
+                    standalone.Html = "/BrainTree/RootPage.html";
                 }
 
                 standalone.Session = session;
@@ -42,7 +42,7 @@ namespace BrainTreePaymentMethod
                     var page = new CreditCardPage()
                     {
                         Data = Db.SQL<Payable>("SELECT i FROM Payable i WHERE PayableId = ?", basketId).First,
-                        Html = "/CreditCard/CreditCardPage.html"
+                        Html = "/BrainTree/CreditCard/CreditCardPage.html"
                     };
 
                     var currentYear = DateTime.Now.Year;

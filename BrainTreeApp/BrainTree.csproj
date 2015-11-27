@@ -132,12 +132,12 @@
     <Content Include="Config\BrainTreeConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="wwwroot\AppIconPage.html" />
-    <Content Include="wwwroot\CreditCard\CreditCardPage.html" />
-    <Content Include="wwwroot\Images\braintree.png" />
-    <Content Include="wwwroot\LauncherWrapperPage.html" />
-    <Content Include="wwwroot\RootPage.html" />
-    <Content Include="wwwroot\Style\dialog.css" />
+    <Content Include="wwwroot\BrainTree\AppIconPage.html" />
+    <Content Include="wwwroot\BrainTree\CreditCard\CreditCardPage.html" />
+    <Content Include="wwwroot\BrainTree\Images\braintree.png" />
+    <Content Include="wwwroot\BrainTree\LauncherWrapperPage.html" />
+    <Content Include="wwwroot\BrainTree\RootPage.html" />
+    <Content Include="wwwroot\BrainTree\Style\dialog.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BrainTreeApi\BrainTreeApi.csproj">
