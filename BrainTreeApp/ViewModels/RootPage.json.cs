@@ -3,7 +3,7 @@ using BrainTreeApi.Models.Customer;
 using Starcounter;
 namespace BrainTreePaymentMethod
 {
-    public partial class RootPage : Page, IBound<CustomerDataPage>
+    public partial class RootPage : Page
     {
 
     }
