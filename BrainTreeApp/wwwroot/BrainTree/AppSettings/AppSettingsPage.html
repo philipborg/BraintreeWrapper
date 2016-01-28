@@ -1,0 +1,52 @@
+﻿<template>
+    <template id="app-settings-page" is="dom-bind">
+        <div id="settings-data">
+            <div>
+                <label for="customer-information" style="text-transform: uppercase;">
+                    <i class="pull-left glyphicon glyphicon-credit-card" style="margin-right:5px;padding-top:3px;"></i>
+                    <strong>
+                        App Settings
+                    </strong>
+                </label>
+            </div>
+            <hr />
+            <div>
+                <label for="customer-information" style="text-transform: uppercase;">
+                    <i class="pull-left glyphicon glyphicon-credit-card" style="margin-right:5px;padding-top:3px;"></i>
+                    <strong>
+                        BrainTree settings
+                    </strong>
+                </label>
+            </div>
+            <div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.Enviroment)}}">
+                    <label class="control-label" for="enviroment">Enviroment:</label>
+                    <input type="text" class="form-control" id="enviroment" aria-describedby="enviroment" value="{{model.Settings.Enviroment$::input}}">
+                </div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.MerchantId)}}">
+                    <label class="control-label" for="merchant-id">Merchant id:</label>
+                    <input type="text" class="form-control" id="merchant-id" aria-describedby="merchant-id" value="{{model.Settings.MerchantId$::input}}">
+                </div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.PublicKey)}}">
+                    <label class="control-label" for="public-key">Public key:</label>
+                    <input type="text" class="form-control" id="public-key" aria-describedby="public-key" value="{{model.Settings.PublicKey$::input}}">
+                </div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.PrivateKey)}}">
+                    <label class="control-label" for="private-key">Private key:</label>
+                    <input type="text" class="form-control" id="private-key" aria-describedby="private-key" value="{{model.Settings.PrivateKey$::input}}">
+                </div>
+                <hr />
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-default" type="button" value="{{model.Save$::click}}" onclick="++this.value">Next</button>
+                </div>
+            </div>
+        </div>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
+</template>
+    <!--<script>
+        var customer = document.querySelector('#credit-card-information');
+        customer.addErrorClass = function (basic, error) {
+            return basic + ' ' + error;
+        }
+    </script>-->

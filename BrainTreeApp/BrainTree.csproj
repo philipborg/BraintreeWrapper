@@ -90,6 +90,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\CreditCard\CreditCardValidator.cs" />
+    <Compile Include="ViewModels\AppSettings\AppSettingsPage.json.cs">
+      <DependentUpon>AppSettingsPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CreditCard\CreditCardPage.json.cs">
       <DependentUpon>CreditCardPage.json</DependentUpon>
     </Compile>
@@ -99,6 +102,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <TypedJSON Include="ViewModels\AppSettings\AppSettingsPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <TypedJSON Include="AppName.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
@@ -133,6 +139,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="wwwroot\BrainTree\AppIconPage.html" />
+    <Content Include="wwwroot\BrainTree\AppSettings\AppSettingsPage.html" />
     <Content Include="wwwroot\BrainTree\CreditCard\CreditCardPage.html" />
     <Content Include="wwwroot\BrainTree\Images\braintree.png" />
     <Content Include="wwwroot\BrainTree\LauncherWrapperPage.html" />
@@ -145,6 +152,7 @@
       <Name>BrainTreeApi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

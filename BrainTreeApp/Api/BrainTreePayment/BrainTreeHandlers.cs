@@ -1,4 +1,5 @@
-﻿using BrainTreeApp;
+﻿using BrainTree;
+using BrainTreeApp;
 using BrainTreePaymentMethod;
 using Starcounter;
 using System;
@@ -33,6 +34,19 @@ namespace BrainTreePaymentMethod
 
                 standalone.Session = session;
                 return standalone;
+            });
+
+            Handle.GET("/braintree/app-settings", () =>
+            {
+                return Db.Scope<Json>(() => {
+                    RootPage master = (RootPage)Self.GET("/braintree/rootpage");
+
+                    var page = new AppSettingsPage();
+
+                    master.CurrentPage = page;
+
+                    return master;
+                });
             });
 
             Handle.GET("/braintree/partials/credit-card/{?}", (string basketId) =>

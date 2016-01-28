@@ -24,6 +24,8 @@ namespace BrainTreePaymentMethod
             BrainTreeHandlers brainTreeHandlers = new BrainTreeHandlers();
             brainTreeHandlers.RegisterBrainTreeHandlers();
 
+            UriMapping.Map("/braintree/app-settings", "/sc/mapping/settings");
+
             UriMapping.OntologyMap("/braintree/partials/credit-card/@w", typeof(Payable).FullName, null, null);
         }
 
