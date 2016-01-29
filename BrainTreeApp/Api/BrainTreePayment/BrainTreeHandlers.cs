@@ -39,9 +39,12 @@ namespace BrainTreePaymentMethod
             Handle.GET("/braintree/app-settings", () =>
             {
                 return Db.Scope<Json>(() => {
+                   
                     RootPage master = (RootPage)Self.GET("/braintree/rootpage");
 
                     var page = new AppSettingsPage();
+
+                    page.Settings = Db.SQL("SELECT i FROM BrainTreeSettings i");
 
                     master.CurrentPage = page;
 
