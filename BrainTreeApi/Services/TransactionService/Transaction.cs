@@ -31,10 +31,10 @@ namespace BrainTreeApi.Service.TransactionService
                     }
                 };
 
-                var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Transaction.Sale(transactionRequest);
+                //var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Transaction.Sale(transactionRequest);
 
-                if (!result.IsSuccess())
-                    throw new Exception(result.Message);
+                //if (!result.IsSuccess())
+                //    throw new Exception(result.Message);
                     
             }
             catch (Braintree.Exceptions.AuthenticationException ex)

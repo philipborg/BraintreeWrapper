@@ -90,6 +90,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\CreditCard\CreditCardValidator.cs" />
+    <Compile Include="Validators\Setting\SettingValidator.cs" />
     <Compile Include="ViewModels\AppSettings\AppSettingsPage.json.cs">
       <DependentUpon>AppSettingsPage.json</DependentUpon>
     </Compile>

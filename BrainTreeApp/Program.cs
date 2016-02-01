@@ -14,10 +14,6 @@ namespace BrainTreePaymentMethod
 
         static void Main()
         {
-            var app = Application.GetApplication(Assembly.GetExecutingAssembly());
-
-            SetConfigFilePath(app.WorkingDirectory);
-
             MainHandlers mainHandlers = new MainHandlers();
             mainHandlers.RegisterLauncher(APP_NAME,DESCRIPTION);
 
@@ -27,11 +23,6 @@ namespace BrainTreePaymentMethod
             UriMapping.Map("/braintree/app-settings", "/sc/mapping/settings");
 
             UriMapping.OntologyMap("/braintree/partials/credit-card/@w", typeof(Payable).FullName, null, null);
-        }
-
-        private static void SetConfigFilePath(string appDirectory)
-        {
-            BrainTreeConfig.FileConfigPath = string.Format("{0}\\{1}", appDirectory, "Config\\BrainTreeConfig.xml");
         }
     }
 }

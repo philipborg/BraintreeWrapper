@@ -1,13 +1,14 @@
-﻿using FluentValidation;
+﻿using BrainTree;
+using FluentValidation;
 using System;
 
-namespace BrainTreeApi.Validators.Setting
+namespace BrainTreeApp
 {
-    public class SettingValidator : AbstractValidator<BrainTreeApi.Models.Setting.Setting>
+    public class SettingValidator : AbstractValidator<AppSettingsPage.SettingsJson>
     {
         public SettingValidator()
         {
-            RuleFor(jk => jk.Enviroment).NotEmpty();
+            //RuleFor(jk => jk.Enviroment.Selected).NotEmpty();
 
             RuleFor(jk=>jk.MerchantId).NotEmpty();
 

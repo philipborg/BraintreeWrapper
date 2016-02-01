@@ -44,7 +44,20 @@ namespace BrainTreePaymentMethod
 
                     var page = new AppSettingsPage();
 
-                    page.Settings = Db.SQL("SELECT i FROM BrainTreeSettings i");
+                    //page.Settings = Db.SQL("SELECT i FROM BrainTreeSettings i");
+
+                    page.Settings.Enviroment.Items.Add(
+                        new AppSettingsPage.SettingsJson.EnviromentJson.ItemsElementJson {
+                            Value = "Sandbox",
+                            Text = "Sandbox"
+                        });
+
+                    page.Settings.Enviroment.Items.Add(
+                        new AppSettingsPage.SettingsJson.EnviromentJson.ItemsElementJson
+                        {
+                            Value = "Production",
+                            Text = "Production"
+                        });
 
                     master.CurrentPage = page;
 
