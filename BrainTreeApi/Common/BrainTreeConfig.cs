@@ -12,32 +12,6 @@ namespace BrainTreeApi.Common
 {
     public static class BrainTreeConfig
     {
-        public static string FileConfigPath { get; set; }
-
-        //public static Setting ReadConfig()
-        //{
-        //    try
-        //    {
-        //        var deserializer = new XmlSerializer(typeof(Setting));
-
-        //        using (TextReader reader = new StreamReader(FileConfigPath))
-        //        {
-        //            object obj = deserializer.Deserialize(reader);
-
-        //            var setting = (Setting)obj;
-
-
-
-        //            return setting;
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        //TODO LOG ERROR
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
-
         public static Braintree.Environment GetEnum(string name)
         {
             switch(name)

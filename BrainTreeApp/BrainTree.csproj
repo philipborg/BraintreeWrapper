@@ -136,9 +136,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\BrainTreeConfig.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="wwwroot\BrainTree\AppIconPage.html" />
     <Content Include="wwwroot\BrainTree\AppSettings\AppSettingsPage.html" />
     <Content Include="wwwroot\BrainTree\CreditCard\CreditCardPage.html" />

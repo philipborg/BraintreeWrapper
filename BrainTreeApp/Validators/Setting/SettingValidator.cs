@@ -8,7 +8,7 @@ namespace BrainTreeApp
     {
         public SettingValidator()
         {
-            //RuleFor(jk => jk.Enviroment.Selected).NotEmpty();
+            RuleFor(jk => jk.Enviroment.Selected).NotEmpty();
 
             RuleFor(jk=>jk.MerchantId).NotEmpty();
 

@@ -13,7 +13,7 @@ namespace BrainTreeApi
             var stream = new MemoryStream();
             var serializer = new XmlSerializer(model.GetType());
 
-            using (XmlWriter xw = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = indent, OmitXmlDeclaration = omitXmlDeclaration }))
+            using (var xw = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = indent, OmitXmlDeclaration = omitXmlDeclaration }))
             {
                 if(namespaces)
                     serializer.Serialize(xw, model, new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));

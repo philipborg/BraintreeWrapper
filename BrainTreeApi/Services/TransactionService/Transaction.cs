@@ -9,7 +9,7 @@ namespace BrainTreeApi.Service.TransactionService
 {
     public static class Transaction
     {
-        public static void CreateTransactionWithCustomer(CustomerModel customer, CreditCardModel creditCard, PaymentModel payment)
+        public static void CreateTransactionWithCustomer(string enviroment, string merchantId, string publicKey, string privateKey, CustomerModel customer, CreditCardModel creditCard, PaymentModel payment)
         {
             try
             {
@@ -31,10 +31,10 @@ namespace BrainTreeApi.Service.TransactionService
                     }
                 };
 
-                //var result = BrainTreeSerivce.Instance.GetBrainTreeGateway().Transaction.Sale(transactionRequest);
+                var result = BrainTreeSerivce.Instance.GetBrainTreeGateway(enviroment, merchantId, publicKey,privateKey).Transaction.Sale(transactionRequest);
 
-                //if (!result.IsSuccess())
-                //    throw new Exception(result.Message);
+                if (!result.IsSuccess())
+                    throw new Exception(result.Message);
                     
             }
             catch (Braintree.Exceptions.AuthenticationException ex)

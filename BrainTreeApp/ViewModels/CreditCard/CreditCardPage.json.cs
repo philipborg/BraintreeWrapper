@@ -26,7 +26,9 @@ namespace BrainTreeApp
                     var creditCard = MappingDataToCreditCard(creditCardJson);
                     var payment = MappingDataToPayment(payable);
 
-                    BrainTreeApi.Service.TransactionService.Transaction.CreateTransactionWithCustomer(customer, creditCard, payment);
+                    var settings = Db.SQL<BrainTreeSettings>("SELECT i FROM BrainTreeSettings i").First;
+
+                    BrainTreeApi.Service.TransactionService.Transaction.CreateTransactionWithCustomer(settings.Enviroment, settings.MerchantId, settings.PublicKey, settings.PrivateKey, customer, creditCard, payment);
                 }
                 catch (ApplicationException ex)
                 {

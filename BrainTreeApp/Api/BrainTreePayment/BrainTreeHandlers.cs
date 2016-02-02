@@ -44,7 +44,7 @@ namespace BrainTreePaymentMethod
 
                     var page = new AppSettingsPage();
 
-                    //page.Settings = Db.SQL("SELECT i FROM BrainTreeSettings i");
+                    var settings = Db.SQL<BrainTreeSettings>("SELECT i FROM BrainTreeSettings i").First;
 
                     page.Settings.Enviroment.Items.Add(
                         new AppSettingsPage.SettingsJson.EnviromentJson.ItemsElementJson {
@@ -58,6 +58,14 @@ namespace BrainTreePaymentMethod
                             Value = "Production",
                             Text = "Production"
                         });
+
+                    if(settings != null)
+                    {
+                        page.Settings.Enviroment.Selected = settings.Enviroment;
+                        page.Settings.MerchantId = settings.MerchantId;
+                        page.Settings.PrivateKey = settings.PrivateKey;
+                        page.Settings.PublicKey = settings.PublicKey;
+                    }
 
                     master.CurrentPage = page;
 
