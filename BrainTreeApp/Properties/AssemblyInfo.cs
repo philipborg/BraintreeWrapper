@@ -6,11 +6,11 @@ using Starcounter.Internal;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BrainTree")]
+[assembly: AssemblyTitle("BrainTreeWrapper")]
 [assembly: AssemblyDescription("Created by Jakub Klekota")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Handsoncode")]
-[assembly: AssemblyProduct("BrainTree")]
+[assembly: AssemblyProduct("BrainTreeWrapper")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

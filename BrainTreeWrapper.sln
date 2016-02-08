@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainTreeApi", "BrainTreeApi\BrainTreeApi.csproj", "{598A4CB8-C383-48C7-9568-0AD7E3C4F364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainTree", "BrainTreeApp\BrainTree.csproj", "{5BE0966F-EBF9-400A-8B5E-6F0E66B86596}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainTreeWrapper", "BrainTreeApp\BrainTreeWrapper.csproj", "{5BE0966F-EBF9-400A-8B5E-6F0E66B86596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

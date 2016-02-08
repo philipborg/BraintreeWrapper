@@ -9,8 +9,8 @@
     <ProjectGuid>{5BE0966F-EBF9-400A-8B5E-6F0E66B86596}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BrainTree</RootNamespace>
-    <AssemblyName>BrainTree</AssemblyName>
+    <RootNamespace>BrainTreeWrapper</RootNamespace>
+    <AssemblyName>BrainTreeWrapper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <UseVSHostingProcess>false</UseVSHostingProcess>
