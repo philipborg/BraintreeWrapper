@@ -1,7 +1,6 @@
 using Starcounter;
 using Simplified.Ring6;
 using System;
-using BrainTreeApp;
 
 namespace BrainTree
 {
@@ -17,11 +16,12 @@ namespace BrainTree
 
             if (settingsValidator.IsValid)
             {
-                if(settings != null)
+                if (settings != null)
                 {
                     try
                     {
-                        Db.Transact(delegate {
+                        Db.Transact(delegate
+                        {
 
                             var bts = Db.SQL<BrainTreeSettings>("SELECT i FROM BrainTreeSettings i").First;
 
@@ -47,7 +47,7 @@ namespace BrainTree
                         this.Result.IsSuccessful = true;
                         this.Result.Message = "BrainTree settings was saved !";
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         this.Result.Message = ex.Message;
                     }

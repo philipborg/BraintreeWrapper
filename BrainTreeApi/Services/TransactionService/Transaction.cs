@@ -13,28 +13,32 @@ namespace BrainTreeApi.Service.TransactionService
         {
             try
             {
-                var transactionRequest = new TransactionRequest
-                {
-                    Amount = payment.Amount,
-                    Customer = new CustomerRequest
-                    {
-                        FirstName = customer.FirstName,
-                        LastName = customer.LastName,
-                        Email = customer.Email
-                    },
-                    CreditCard = new TransactionCreditCardRequest
-                    {
-                        Number = creditCard.CardNumber,
-                        CVV = creditCard.SecurityNumber,
-                        ExpirationMonth = creditCard.ExpiryMonth.ToString(),
-                        ExpirationYear = creditCard.ExpiryYear.ToString(),
-                    }
-                };
+            //    var transactionRequest = new TransactionRequest
+            //    {
+            //        Amount = payment.Amount,
+            //        Customer = new CustomerRequest
+            //        {
+            //            FirstName = customer.FirstName,
+            //            LastName = customer.LastName,
+            //            Email = customer.Email
+            //        },
+            //        CreditCard = new TransactionCreditCardRequest
+            //        {
+            //            Number = creditCard.CardNumber,
+            //            CVV = creditCard.SecurityNumber,
+            //            ExpirationMonth = creditCard.ExpiryMonth.ToString(),
+            //            ExpirationYear = creditCard.ExpiryYear.ToString(),
+            //        }
+            //    };
 
-                var result = BrainTreeSerivce.Instance.GetBrainTreeGateway(enviroment, merchantId, publicKey,privateKey).Transaction.Sale(transactionRequest);
+            //    var result = BrainTreeSerivce.Instance.GetBrainTreeGateway(enviroment, merchantId, publicKey,privateKey).Transaction.Sale(transactionRequest);
 
-                if (!result.IsSuccess())
-                    throw new Exception(result.Message);
+            //    Result<Transaction> settle = BrainTreeSerivce.Instance.GetBrainTreeGateway(enviroment, merchantId, publicKey, privateKey).Transaction.SubmitForSettlement("");
+
+            //    var settleAmount = settle.Transaction.Amount;
+
+            //    if (!result.IsSuccess())
+            //        throw new Exception(result.Message);
                     
             }
             catch (Braintree.Exceptions.AuthenticationException ex)

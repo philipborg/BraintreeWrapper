@@ -1,9 +1,8 @@
 ﻿using System;
 using Starcounter;
 using BrainTreePaymentMethod;
-using Simplified.Ring3;
 using System.Reflection;
-using BrainTreeApi.Common;
+using BrainTreeWrapper;
 
 namespace BrainTreePaymentMethod
 {
@@ -20,9 +19,9 @@ namespace BrainTreePaymentMethod
             BrainTreeHandlers brainTreeHandlers = new BrainTreeHandlers();
             brainTreeHandlers.RegisterBrainTreeHandlers();
 
-            UriMapping.Map("/braintree/app-settings", "/sc/mapping/settings");
+            new HookIsReady().Register();
 
-            UriMapping.OntologyMap("/braintree/partials/credit-card/@w", typeof(Payable).FullName, null, null);
+            //UriMapping.Map("/braintree/app-settings", "/sc/mapping/settings");
         }
     }
 }
