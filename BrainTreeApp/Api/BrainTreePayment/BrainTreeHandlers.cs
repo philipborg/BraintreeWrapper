@@ -39,7 +39,6 @@ namespace BrainTreePaymentMethod
             {
                 return Db.Scope(() =>
                 {
-
                     RootPage master = (RootPage)Self.GET("/braintree/rootpage");
 
                     var page = new AppSettingsPage();

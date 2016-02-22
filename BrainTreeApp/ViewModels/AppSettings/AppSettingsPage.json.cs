@@ -1,6 +1,7 @@
 using Starcounter;
 using Simplified.Ring6;
 using System;
+using BrainTreeWrapper;
 
 namespace BrainTree
 {
@@ -22,7 +23,6 @@ namespace BrainTree
                     {
                         Db.Transact(delegate
                         {
-
                             var bts = Db.SQL<BrainTreeSettings>("SELECT i FROM BrainTreeSettings i").First;
 
                             if (bts == null)
