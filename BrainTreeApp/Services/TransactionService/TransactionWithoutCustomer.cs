@@ -92,7 +92,7 @@ namespace BrainTreeWrapper
             var paymentStarted = new PaymentAttemptStatusStarted
             {
                 Reason = reason,
-                Time = new DateTime(),
+                Time = DateTime.Now,
                 PaymentAttempt = paymentAttempt
             };
         }
@@ -105,7 +105,7 @@ namespace BrainTreeWrapper
             var paymentStarted = new PaymentAttemptStatusFailed
             {
                 Reason = reason,
-                Time = new DateTime(),
+                Time = DateTime.Now,
                 PaymentAttempt = paymentAttempt
             };
         }
@@ -118,7 +118,7 @@ namespace BrainTreeWrapper
             var paymentStarted = new PaymentAttemptStatusFinished
             {
                 Reason = reason,
-                Time = new DateTime(),
+                Time = DateTime.Now,
                 PaymentAttempt = paymentAttempt
             };
         }
