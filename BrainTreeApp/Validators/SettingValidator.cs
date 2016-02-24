@@ -4,7 +4,7 @@ using System;
 
 namespace BrainTreeWrapper
 {
-    public class SettingValidator : AbstractValidator<AppSettingsPage.SettingsJson>
+    public class SettingValidator : AbstractValidator<BrainTree.AppSettingsPage.SettingsJson>
     {
         public SettingValidator()
         {
