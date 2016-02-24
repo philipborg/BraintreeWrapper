@@ -20,8 +20,6 @@ namespace BrainTreePaymentMethod
             brainTreeHandlers.RegisterBrainTreeHandlers();
 
             new HookIsReady().Register();
-
-            //UriMapping.Map("/braintree/app-settings", "/sc/mapping/settings");
         }
     }
 }

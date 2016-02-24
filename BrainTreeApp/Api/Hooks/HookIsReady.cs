@@ -8,11 +8,9 @@ namespace BrainTreeWrapper
     {
         public void Register()
         {
-            Hook<PaymentAttempt>.CommitInsert += (e, paymentAttempt) =>
+            Hook<CreditCardPaymentAttempt>.CommitInsert += (e, creditCardPayment) =>
             {
-                var creditCard = paymentAttempt.PaymentMethod.GetPayment();
-
-                TransactionWithoutCustomer.CreateTrancation(paymentAttempt, creditCard);
+                TransactionWithoutCustomer.CreateTrancation(creditCardPayment);
             };
         }
     }
