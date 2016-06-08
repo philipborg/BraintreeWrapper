@@ -3,23 +3,19 @@ using Starcounter;
 using BrainTreePaymentMethod;
 using System.Reflection;
 using BrainTreeWrapper;
+using BrainTreeWrapper.Api;
 
 namespace BrainTreePaymentMethod
 {
     class Program
     {
-        private static string APP_NAME = "BrainTree";
-        private static string DESCRIPTION = "BrainTree it's the payment provider";
-
         static void Main()
         {
-            MainHandlers mainHandlers = new MainHandlers();
-            mainHandlers.RegisterLauncher(APP_NAME,DESCRIPTION);
+            var mainHandlers = new MainHandlers();
+            mainHandlers.Register();
 
-            BrainTreeHandlers brainTreeHandlers = new BrainTreeHandlers();
-            brainTreeHandlers.RegisterBrainTreeHandlers();
-
-            new HookIsReady().Register();
+            var hooks = new CommitHooks();
+            hooks.Register();
         }
     }
 }

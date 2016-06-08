@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Simplified.Ring6;
 using Starcounter;
-using Simplified.Ring6;
 
-namespace BrainTreeWrapper
+namespace BrainTreeWrapper.Api
 {
-    public class HookIsReady
+    public class CommitHooks
     {
         public void Register()
         {

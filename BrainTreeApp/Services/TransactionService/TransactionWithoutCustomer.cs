@@ -10,12 +10,11 @@ namespace BrainTreeWrapper
         public static void CreateTrancation(CreditCardPaymentAttempt creditCardPayment)
         {
             var paymentAttempt = Db.SQL<PaymentAttempt>("SELECT r FROM Simplified.Ring6.PaymentAttempt r WHERE r.\"Order\" = ?", creditCardPayment.Order).First;
-
             try
             {
                 var transactionRequest = new TransactionRequest
                 {
-                    Amount = creditCardPayment.Order.TotalAmount,
+                    Amount = creditCardPayment.Amount,
                     CreditCard = new TransactionCreditCardRequest
                     {
                         CVV = creditCardPayment.SecurityCode,
@@ -31,7 +30,7 @@ namespace BrainTreeWrapper
 
                 Result<Braintree.Transaction> result = BrainTreeSerivce.Instance.GetBrainTreeGateway(brainTreeSettings).Transaction.Sale(transactionRequest);
 
-                if (result.Errors.Count > 0)
+                if (result.Errors?.Count > 0)
                 {
                     foreach (var error in result.Errors.All())
                     {
