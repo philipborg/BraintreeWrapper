@@ -1,20 +1,20 @@
-# BrainTreeApp
+# Braintree Wrapper
 
-BrainTree app is payment provider whereby user can pay for the items. Currently version user have to set own data, billing address and credit card informations which are required.
+Braintree Wrapper is a app that processes payment transactions requested using another app.
+
+Status: **Prototype**
+
+## Trying out
 
 To testing this app, please:
 
-Starting the basket app, then starting this app.
-
-Then please use test credit card infomrations to try testing app (in future stored in .xml file):
-
-Credit card number  - 4111111111111111
-
-Expiry month - 02
-
-Expiry year - 2017
-
-Security number - 123
+1. Start WebShop
+2. Start Braintree Wrapper
+3. Set up your merchant account data (see below)
+4. Use test credit card data:
+ - Credit card number: `4111111111111111`
+ - Expiry date: `02/2017`
+ - Security number: `123`
 
 ### Set merchant account data
 
@@ -22,9 +22,8 @@ Please set yours merchant account data before start the app. Yours mechant accou
 
 Go to:
 
-https://sandbox.braintreegateway.com/login (when use the sandbox enviroment) or
-
-https://www.braintreegateway.com/login  (when use the production enviroment)
+- https://sandbox.braintreegateway.com/login (when using the sandbox enviroment) or
+- https://www.braintreegateway.com/login  (when using the production enviroment)
 
 Log in. Then go to ```Account``` -> ```My user``` -> on bottom of page you find ```View API Keys``` button. Click there.
 
