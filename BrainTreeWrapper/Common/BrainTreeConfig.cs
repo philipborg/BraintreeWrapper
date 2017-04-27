@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BrainTreeWrapper
+namespace BraintreeWrapper.Common
 {
     public static class BrainTreeConfig
     {

@@ -1,8 +1,6 @@
-﻿using System;
-using Starcounter;
-using Braintree;
+﻿using Braintree;
 
-namespace BrainTreeWrapper
+namespace BraintreeWrapper.Common
 {
     public sealed class BrainTreeSerivce
     {

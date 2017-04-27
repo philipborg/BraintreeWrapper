@@ -99,7 +99,7 @@
     <Compile Include="Services\TransactionService\TransactionWithoutCustomer.cs" />
     <Compile Include="Settings\BraintreeWrapperSettings.cs" />
     <Compile Include="Validators\SettingValidator.cs" />
-    <Compile Include="ViewModels\AppSettings\AppSettingsPage.json.cs">
+    <Compile Include="ViewModels\AppSettingsPage.json.cs">
       <DependentUpon>AppSettingsPage.json</DependentUpon>
     </Compile>
     <Compile Include="Api\MainHandlers.cs" />
@@ -108,7 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="ViewModels\AppSettings\AppSettingsPage.json">
+    <TypedJSON Include="ViewModels\AppSettingsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <TypedJSON Include="AppName.json">

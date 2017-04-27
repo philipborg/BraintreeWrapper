@@ -1,7 +1,7 @@
 ﻿using Simplified.Ring6;
 using Starcounter;
 
-namespace BrainTreeWrapper.Api
+namespace BraintreeWrapper.Api
 {
     public class CommitHooks
     {

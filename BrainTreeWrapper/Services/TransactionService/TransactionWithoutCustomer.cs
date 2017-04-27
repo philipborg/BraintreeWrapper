@@ -2,8 +2,9 @@
 using Starcounter;
 using Braintree;
 using Simplified.Ring6;
+using BraintreeWrapper.Common;
 
-namespace BrainTreeWrapper
+namespace BraintreeWrapper
 {
     public static class TransactionWithoutCustomer
     {

@@ -1,11 +1,6 @@
-﻿using System;
-using Starcounter;
-using BrainTreePaymentMethod;
-using System.Reflection;
-using BrainTreeWrapper;
-using BrainTreeWrapper.Api;
+﻿using BraintreeWrapper.Api;
 
-namespace BrainTreePaymentMethod
+namespace BraintreeWrapper
 {
     class Program
     {

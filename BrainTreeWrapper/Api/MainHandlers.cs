@@ -1,14 +1,7 @@
-﻿using Starcounter;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Braintree;
-using BrainTree;
-using Transaction = Braintree.Transaction;
+﻿using BraintreeWrapper.ViewModels;
+using Starcounter;
 
-namespace BrainTreePaymentMethod
+namespace BraintreeWrapper.Api
 {
     public class MainHandlers
     {

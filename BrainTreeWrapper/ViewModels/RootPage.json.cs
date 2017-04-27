@@ -1,6 +1,6 @@
 using Starcounter;
 
-namespace BrainTreePaymentMethod
+namespace BraintreeWrapper.ViewModels
 {
     public partial class RootPage : Page
     {

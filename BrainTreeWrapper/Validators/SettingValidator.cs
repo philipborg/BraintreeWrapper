@@ -1,10 +1,9 @@
-﻿using BrainTree;
+﻿using BraintreeWrapper.ViewModels;
 using FluentValidation;
-using System;
 
-namespace BrainTreeWrapper
+namespace BraintreeWrapper
 {
-    public class SettingValidator : AbstractValidator<BrainTree.AppSettingsPage.SettingsJson>
+    public class SettingValidator : AbstractValidator<AppSettingsPage.SettingsJson>
     {
         public SettingValidator()
         {

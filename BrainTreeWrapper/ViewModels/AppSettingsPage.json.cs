@@ -1,9 +1,8 @@
 using Starcounter;
 using Simplified.Ring6;
 using System;
-using BrainTreeWrapper;
 
-namespace BrainTree
+namespace BraintreeWrapper.ViewModels
 {
     public partial class AppSettingsPage : Page
     {
