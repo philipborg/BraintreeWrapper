@@ -21,29 +21,29 @@ namespace BrainTreePaymentMethod
 
         private void RegisterLauncherHooks()
         {
-            Handle.GET("/braintree/app-name", () =>
+            Handle.GET("/braintreewrapper/app-name", () =>
             {
                 return new AppName();
             });
 
-            Handle.GET("/braintree/menu", () =>
+            Handle.GET("/braintreewrapper/menu", () =>
             {
                 Page p = new Page()
                 {
-                    Html = "/braintree/AppMenuPage.html"
+                    Html = "/braintreewrapper/AppMenuPage.html"
                 };
                 return p;
             });
         }
         private void RegisterBrainTreeHandlers()
         {
-            Handle.GET("/braintree", () =>
+            Handle.GET("/braintreewrapper", () =>
             {
-                RootPage master = (RootPage)Self.GET("/braintree/rootpage");
+                RootPage master = (RootPage)Self.GET("/braintreewrapper/rootpage");
                 return master;
             });
 
-            Handle.GET("/braintree/rootpage", () =>
+            Handle.GET("/braintreewrapper/rootpage", () =>
             {
                 Session session = Session.Current;
 
@@ -55,18 +55,18 @@ namespace BrainTreePaymentMethod
                 if (session == null)
                 {
                     session = new Session(SessionOptions.PatchVersioning);
-                    standalone.Html = "/BrainTree/RootPage.html";
+                    standalone.Html = "/braintreewrapper/RootPage.html";
                 }
 
                 standalone.Session = session;
                 return standalone;
             });
 
-            Handle.GET("/braintree/settings", () =>
+            Handle.GET("/braintreewrapper/settings", () =>
             {
                 return Db.Scope(() =>
                 {
-                    RootPage master = (RootPage)Self.GET("/braintree/rootpage");
+                    RootPage master = (RootPage)Self.GET("/braintreewrapper/rootpage");
 
                     var page = new AppSettingsPage();
 
@@ -102,9 +102,9 @@ namespace BrainTreePaymentMethod
         }
         private void RegisterMapperHandlers()
         {
-            UriMapping.Map("/braintree/settings", UriMapping.MappingUriPrefix + "/settings");
-            UriMapping.Map("/braintree/menu", UriMapping.MappingUriPrefix + "/menu");
-            UriMapping.Map("/braintree/app-name", UriMapping.MappingUriPrefix + "/app-name");
+            UriMapping.Map("/braintreewrapper/settings", UriMapping.MappingUriPrefix + "/settings");
+            UriMapping.Map("/braintreewrapper/menu", UriMapping.MappingUriPrefix + "/menu");
+            UriMapping.Map("/braintreewrapper/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
     }
 }
