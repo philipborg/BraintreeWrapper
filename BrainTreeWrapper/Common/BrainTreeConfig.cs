@@ -2,7 +2,7 @@
 
 namespace BraintreeWrapper.Common
 {
-    public static class BrainTreeConfig
+    public static class BraintreeConfig
     {
         public static Braintree.Environment GetEnum(string name)
         {

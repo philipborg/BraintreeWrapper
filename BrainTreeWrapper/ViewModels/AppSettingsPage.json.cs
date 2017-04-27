@@ -1,5 +1,4 @@
 using Starcounter;
-using Simplified.Ring6;
 using System;
 
 namespace BraintreeWrapper.ViewModels
@@ -20,11 +19,11 @@ namespace BraintreeWrapper.ViewModels
                 {
                     Db.Transact(delegate
                     {
-                        var bts = Db.SQL<BrainTreeSettings>("SELECT i FROM BrainTreeSettings i").First;
+                        var bts = Db.SQL<BraintreeSettings>("SELECT i FROM BrainTreeSettings i").First;
 
                         if (bts == null)
                         {
-                            new BrainTreeSettings
+                            new BraintreeSettings
                             {
                                 Enviroment = settings.Enviroment.Selected,
                                 MerchantId = settings.MerchantId,

@@ -92,12 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\CommitHooks.cs" />
-    <Compile Include="Common\BrainTreeConfig.cs" />
-    <Compile Include="Common\BrainTreeSerivce.cs" />
+    <Compile Include="Common\BraintreeConfig.cs" />
+    <Compile Include="Common\BraintreeService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TransactionService\TransactionWithoutCustomer.cs" />
-    <Compile Include="Settings\BraintreeWrapperSettings.cs" />
+    <Compile Include="Settings\BraintreeSettings.cs" />
     <Compile Include="Validators\SettingValidator.cs" />
     <Compile Include="ViewModels\AppSettingsPage.json.cs">
       <DependentUpon>AppSettingsPage.json</DependentUpon>

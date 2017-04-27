@@ -2,7 +2,6 @@
 using Starcounter;
 using Braintree;
 using Simplified.Ring6;
-using BraintreeWrapper.Common;
 
 namespace BraintreeWrapper
 {
@@ -25,11 +24,11 @@ namespace BraintreeWrapper
                     }
                 };
 
-                var brainTreeSettings = Db.SQL<BrainTreeSettings>("SELECT jk FROM BrainTreeSettings jk").First;
+                var brainTreeSettings = Db.SQL<BraintreeSettings>("SELECT jk FROM BrainTreeSettings jk").First;
 
                 SetStartedStatus(paymentAttempt, creditCardPayment, "Started");
 
-                Result<Braintree.Transaction> result = BrainTreeSerivce.Instance.GetBrainTreeGateway(brainTreeSettings).Transaction.Sale(transactionRequest);
+                Result<Braintree.Transaction> result = Common.BraintreeService.Instance.GetBrainTreeGateway(brainTreeSettings).Transaction.Sale(transactionRequest);
 
                 if (result.Errors?.Count > 0)
                 {

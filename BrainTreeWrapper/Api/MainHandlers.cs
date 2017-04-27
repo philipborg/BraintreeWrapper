@@ -63,7 +63,7 @@ namespace BraintreeWrapper.Api
 
                     var page = new AppSettingsPage();
 
-                    var settings = Db.SQL<BrainTreeSettings>("SELECT i FROM BrainTreeSettings i").First;
+                    var settings = Db.SQL<BraintreeSettings>("SELECT i FROM BrainTreeSettings i").First;
 
                     page.Settings.Enviroment.Items.Add(
                         new AppSettingsPage.SettingsJson.EnviromentJson.ItemsElementJson

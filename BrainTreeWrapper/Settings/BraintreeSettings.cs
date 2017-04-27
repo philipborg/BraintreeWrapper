@@ -2,7 +2,7 @@
 
 namespace BraintreeWrapper
 {
-    public class BrainTreeSettings : Something
+    public class BraintreeSettings : Something
     {
         public string Enviroment { get; set; }
 
