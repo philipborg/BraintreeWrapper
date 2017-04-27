@@ -97,7 +97,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TransactionService\TransactionWithoutCustomer.cs" />
-    <Compile Include="Settings\BrainTreeWrapperSettings.cs" />
+    <Compile Include="Settings\BraintreeWrapperSettings.cs" />
     <Compile Include="Validators\SettingValidator.cs" />
     <Compile Include="ViewModels\AppSettings\AppSettingsPage.json.cs">
       <DependentUpon>AppSettingsPage.json</DependentUpon>
@@ -138,13 +138,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\BrainTree\AppIconPage.html" />
-    <Content Include="wwwroot\BrainTree\AppMenuPage.html" />
-    <Content Include="wwwroot\BrainTree\AppSettings\AppSettingsPage.html" />
-    <Content Include="wwwroot\BrainTree\Images\braintree.png" />
-    <Content Include="wwwroot\BrainTree\LauncherWrapperPage.html" />
-    <Content Include="wwwroot\BrainTree\RootPage.html" />
-    <Content Include="wwwroot\BrainTree\Style\dialog.css" />
+    <Content Include="wwwroot\BraintreeWrapper\AppIconPage.html" />
+    <Content Include="wwwroot\BraintreeWrapper\AppMenuPage.html" />
+    <Content Include="wwwroot\BraintreeWrapper\AppSettings\AppSettingsPage.html" />
+    <Content Include="wwwroot\BraintreeWrapper\Images\braintree.png" />
+    <Content Include="wwwroot\BraintreeWrapper\LauncherWrapperPage.html" />
+    <Content Include="wwwroot\BraintreeWrapper\RootPage.html" />
+    <Content Include="wwwroot\BraintreeWrapper\Style\dialog.css" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
