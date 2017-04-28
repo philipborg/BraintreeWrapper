@@ -91,7 +91,7 @@ namespace BraintreeWrapper.Api
 
                     return master;
                 });
-            }, new HandlerOptions { SelfOnly = true });
+            });
         }
         private void RegisterMapperHandlers()
         {

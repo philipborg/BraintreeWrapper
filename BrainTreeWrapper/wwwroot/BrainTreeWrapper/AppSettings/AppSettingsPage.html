@@ -27,6 +27,7 @@
                 <div class="form-group">
                     <label class="control-label" for="enviroment-type"><strong>Enviroment:</strong></label>
                     <select id="enviroment-type" value="{{model.Settings.Enviroment.Selected$::change}}" class="form-control">
+                        <option>Choose</option>
                         <template is="dom-repeat" items="{{model.Settings.Enviroment.Items}}">
                             <option selected$="{{selected(item.Value)}}" value="{{item.Value}}">{{item.Text}}</option>
                         </template>
