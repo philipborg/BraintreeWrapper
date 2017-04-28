@@ -25,13 +25,13 @@ Go to:
 - https://sandbox.braintreegateway.com/login (when using the sandbox enviroment) or
 - https://www.braintreegateway.com/login  (when using the production enviroment)
 
-Log in. Then go to ```Account``` -> ```My user``` -> on bottom of page you find ```View API Keys``` button. Click there.
+Log in. Then go to `Account` -> `My user` -> on bottom of page you find `View Authorizations` button. Click there.
 
-Next you see ```Api Keys``` page with table. Click first of record, column name```Public Key```, next in ```Client Library Key``` you can find your merchant account data. Please stay on this page.
+Next you see `API Keys` page with table. Click first of record, column name`Private Key`, next in `Client Library Key` you can find your merchant account data. Please stay on this page.
 
-Next go to destination where you download the project. In ```Config``` folder, you can find the ```BrainTreeConfig.xml``` file where you must past data:
+Next go to destination where you download the project. In `Config` folder, you can find the `BrainTreeConfig.xml` file where you must past data:
 
-```
+```xml
   <Enviroment>Put here from page Enviroment value</Enviroment>
   <MerchantId>Put here from page Merchant ID value</MerchantId>
   <PublicKey>Put here from page Public Key value</PublicKey>
