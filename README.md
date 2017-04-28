@@ -13,7 +13,7 @@ To testing this app, please:
 3. Set up your merchant account data (see below)
 4. Use test credit card data:
  - Credit card number: `4111111111111111`
- - Expiry date: `02/2017`
+ - Expiry date: `02/2018`
  - Security number: `123`
 
 ### Set merchant account data
