@@ -1,0 +1,77 @@
+﻿<template>
+    <template id="app-settings-page" is="dom-bind">
+        <div id="settings-data">
+            <div>
+                <div>
+                    <label for="header-braintree-settings" style="text-transform:uppercase;font-size:14px">
+                        <strong>
+                            BrainTree API settings
+                        </strong>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Please set or update braintree settings to authentication with gateway.
+                    </label>
+                </div>
+            </div>
+            <hr />
+            <template is="dom-if" if="{{isMessage(model.Result.Message$)}}">
+                <div>
+                    <div>
+                        <div style="font-weight:bold;font-size:20px;text-align:center;">{{model.Result.Message$}}</div>
+                    </div>
+                </div>
+            </template>
+            <div>
+                <div class="form-group">
+                    <label class="control-label" for="enviroment-type"><strong>Enviroment:</strong></label>
+                    <select id="enviroment-type" value="{{model.Settings.Enviroment.Selected$::change}}" class="form-control">
+                        <option>Choose</option>
+                        <template is="dom-repeat" items="{{model.Settings.Enviroment.Items}}">
+                            <option selected$="{{selected(item.Value)}}" value="{{item.Value}}">{{item.Text}}</option>
+                        </template>
+                    </select>
+                </div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.MerchantId)}}">
+                    <label class="control-label" for="merchant-id"><strong>Merchant id:</strong></label>
+                    <input type="text" class="form-control" id="merchant-id" aria-describedby="merchant-id" value="{{model.Settings.MerchantId$::input}}">
+                </div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.PublicKey)}}">
+                    <label class="control-label" for="public-key"><strong>Public key:</strong></label>
+                    <input type="text" class="form-control" id="public-key" aria-describedby="public-key" value="{{model.Settings.PublicKey$::input}}">
+                </div>
+                <div class$="{{addErrorClass('form-group', model.ErrorSettings.PrivateKey)}}">
+                    <label class="control-label" for="private-key"><strong>Private key:</strong></label>
+                    <input type="text" class="form-control" id="private-key" aria-describedby="private-key" value="{{model.Settings.PrivateKey$::input}}">
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-default" type="button" value="{{model.Save$::click}}" onclick="++this.value">Save</button>
+                </div>
+            </div>
+        </div>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
+    <script>
+    (function () {
+        var currScript = document.currentScript.previousElementSibling;
+        
+        currScript.addErrorClass = function (basic, error) {
+            return basic + ' ' + error;
+        }
+        currScript.selected = function (value) {
+            return value === currScript.model.Settings.Enviroment.Selected$;
+        }
+
+        currScript.isMessage = function (message) {
+            var isMessage = message === '' ? false : true;
+            if (isMessage)
+                setTimeout(function () {
+                    currScript.model.Result.Message$ = '';
+                }, 3000);
+
+            return isMessage;
+        }
+    }());
+    </script>
+</template>

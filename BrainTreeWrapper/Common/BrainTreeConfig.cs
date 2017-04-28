@@ -1,0 +1,24 @@
+﻿using System;
+
+namespace BraintreeWrapper.Common
+{
+    public static class BraintreeConfig
+    {
+        public static Braintree.Environment GetEnum(string name)
+        {
+            switch(name)
+            {
+                case "Development":
+                    return Braintree.Environment.DEVELOPMENT;
+                case "Sandbox":
+                    return Braintree.Environment.SANDBOX;
+                case "Production":
+                    return Braintree.Environment.PRODUCTION;
+                case "Qa":
+                    return Braintree.Environment.QA;
+                default:
+                    return Braintree.Environment.DEVELOPMENT;
+            }
+        }
+    }
+}
