@@ -18,24 +18,20 @@ To testing this app, please:
 
 ### Set merchant account data
 
-Please set yours merchant account data before start the app. Yours mechant account you find it in account setting.
+You will need to provide your Braintree merchant account data before using the app. 
 
-Go to:
+Go to `localhost:8080/braintreewrapper/settings` page and enter the following data:
 
-- https://sandbox.braintreegateway.com/login (when using the sandbox enviroment) or
-- https://www.braintreegateway.com/login  (when using the production enviroment)
+- Environment 
+- Merchant id 
+- Public key
+- Private key
+
+The data can be obtained from the person who has configured the merchant account. You can also find it in the Braintree admin interface by going to one of the following:
+
+1. https://sandbox.braintreegateway.com/login (when using the sandbox enviroment)
+2. https://www.braintreegateway.com/login (when using the production enviroment)
 
 Log in. Then go to `Account` -> `My user` -> on bottom of page you find `View Authorizations` button. Click there.
 
-Next you see `API Keys` page with table. Click first of record, column name`Private Key`, next in `Client Library Key` you can find your merchant account data. Please stay on this page.
-
-Next go to destination where you download the project. In `Config` folder, you can find the `BrainTreeConfig.xml` file where you must past data:
-
-```xml
-  <Enviroment>Put here from page Enviroment value</Enviroment>
-  <MerchantId>Put here from page Merchant ID value</MerchantId>
-  <PublicKey>Put here from page Public Key value</PublicKey>
-  <PrivateKey>Put here from page Private Key value</PrivateKey>
-```
-
-Ok, when you finished, save file, and start the app, or restart the app to change affected.
+Next you see `API Keys` page with table. Click first of record, column name`Private Key`, next in `Client Library Key` you can find your merchant account data. That page presents all the information needed to configure BraintreeWrapper settings page.
