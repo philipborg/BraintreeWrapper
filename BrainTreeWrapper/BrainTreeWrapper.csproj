@@ -102,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="weaver.ignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <TypedJSON Include="ViewModels\AppMenuPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
