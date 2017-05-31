@@ -3,13 +3,11 @@ using System;
 
 namespace BraintreeWrapper.ViewModels
 {
-    public partial class AppSettingsPage : Page
+    public partial class AppSettingsPage : Json
     {
         void Handle(Input.Save action)
         {
             var settings = this.Settings;
-
-            //var settingValidate = new SettingValidator().Validate(settings);
 
             ClearErrorSettings();
 
@@ -25,7 +23,7 @@ namespace BraintreeWrapper.ViewModels
                         {
                             new BraintreeSettings
                             {
-                                Enviroment = settings.Enviroment.Selected,
+                                Environment = settings.Environment.Selected,
                                 MerchantId = settings.MerchantId,
                                 PublicKey = settings.PublicKey,
                                 PrivateKey = settings.PrivateKey
@@ -33,7 +31,7 @@ namespace BraintreeWrapper.ViewModels
                         }
                         else
                         {
-                            bts.Enviroment = settings.Enviroment.Selected;
+                            bts.Environment = settings.Environment.Selected;
                             bts.MerchantId = settings.MerchantId;
                             bts.PublicKey = settings.PublicKey;
                             bts.PrivateKey = settings.PrivateKey;
@@ -50,10 +48,8 @@ namespace BraintreeWrapper.ViewModels
             }
             else
             {
-                //foreach (var field in settingsValidator.Errors)
-                //{
-                //    this.ErrorSettings[field.PropertyName] = "has-error has-feedbac";
-                //}
+                this.Result.IsSuccessful = false;
+                this.Result.Message = "No BrainTree settings to save!";
             }
         }
         void ClearErrorSettings()

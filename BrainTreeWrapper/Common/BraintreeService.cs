@@ -17,7 +17,7 @@ namespace BraintreeWrapper.Common
         {
             return new BraintreeGateway
             {
-                Environment = BraintreeConfig.GetEnum(config.Enviroment),
+                Environment = BraintreeConfig.GetEnum(config.Environment),
                 MerchantId = config.MerchantId,
                 PublicKey = config.PublicKey,
                 PrivateKey = config.PrivateKey

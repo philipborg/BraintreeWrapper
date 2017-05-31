@@ -1,4 +1,5 @@
 ﻿using BraintreeWrapper.Api;
+using Starcounter;
 
 namespace BraintreeWrapper
 {
@@ -6,6 +7,9 @@ namespace BraintreeWrapper
     {
         static void Main()
         {
+            Application.Current.Use(new HtmlFromJsonProvider());
+            Application.Current.Use(new PartialToStandaloneHtmlProvider());
+
             var mainHandlers = new MainHandlers();
             mainHandlers.Register();
 

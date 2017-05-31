@@ -25,10 +25,10 @@
             </template>
             <div>
                 <div class="form-group">
-                    <label class="control-label" for="enviroment-type"><strong>Enviroment:</strong></label>
-                    <select id="enviroment-type" value="{{model.Settings.Enviroment.Selected$::change}}" class="form-control">
+                    <label class="control-label" for="Environment-type"><strong>Environment:</strong></label>
+                    <select id="Environment-type" value="{{model.Settings.Environment.Selected$::change}}" class="form-control">
                         <option>Choose</option>
-                        <template is="dom-repeat" items="{{model.Settings.Enviroment.Items}}">
+                        <template is="dom-repeat" items="{{model.Settings.Environment.Items}}">
                             <option selected$="{{selected(item.Value)}}" value="{{item.Value}}">{{item.Text}}</option>
                         </template>
                     </select>
@@ -60,7 +60,7 @@
             return basic + ' ' + error;
         }
         currScript.selected = function (value) {
-            return value === currScript.model.Settings.Enviroment.Selected$;
+            return value === currScript.model.Settings.Environment.Selected$;
         }
 
         currScript.isMessage = function (message) {

@@ -4,7 +4,7 @@ namespace BraintreeWrapper
 {
     public class BraintreeSettings : Something
     {
-        public string Enviroment { get; set; }
+        public string Environment { get; set; }
 
         public string MerchantId { get; set; }
 

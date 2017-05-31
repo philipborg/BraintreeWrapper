@@ -21,37 +21,29 @@ namespace BraintreeWrapper.Api
 
             Handle.GET("/braintreewrapper/menu", () =>
             {
-                Page p = new Page()
-                {
-                    Html = "/braintreewrapper/AppMenuPage.html"
-                };
-                return p;
+                return new AppMenuPage();
             });
         }
         private void RegisterBrainTreeHandlers()
         {
             Handle.GET("/braintreewrapper", () =>
             {
-                RootPage master = (RootPage)Self.GET("/braintreewrapper/rootpage");
-                return master;
+                return Self.GET("/braintreewrapper/settings");
             });
 
             Handle.GET("/braintreewrapper/rootpage", () =>
             {
-                Session session = Session.Current;
-
-                if (session != null && session.Data != null)
-                    return session.Data;
+                if (Session.Current != null && Session.Current.Data != null)
+                    return Session.Current.Data;
 
                 var standalone = new RootPage();
 
-                if (session == null)
+                if (Session.Current == null)
                 {
-                    session = new Session(SessionOptions.PatchVersioning);
-                    standalone.Html = "/braintreewrapper/RootPage.html";
+                    Session.Current = new Session(SessionOptions.PatchVersioning);
                 }
 
-                standalone.Session = session;
+                standalone.Session = Session.Current;
                 return standalone;
             });
 
@@ -63,17 +55,30 @@ namespace BraintreeWrapper.Api
 
                     var page = new AppSettingsPage();
 
-                    var settings = Db.SQL<BraintreeSettings>("SELECT i FROM BrainTreeSettings i").First;
+                    var settings = Db.SQL<BraintreeSettings>("SELECT i FROM BrainTreeWrapper.BrainTreeSettings i").First;
 
-                    page.Settings.Enviroment.Items.Add(
-                        new AppSettingsPage.SettingsJson.EnviromentJson.ItemsElementJson
+                    page.Settings.Environment.Items.Add(
+                        new AppSettingsPage.SettingsJson.EnvironmentJson.ItemsElementJson
                         {
                             Value = "Sandbox",
                             Text = "Sandbox"
                         });
-
-                    page.Settings.Enviroment.Items.Add(
-                        new AppSettingsPage.SettingsJson.EnviromentJson.ItemsElementJson
+                    page.Settings.Environment.Items.Add(
+                        new AppSettingsPage.SettingsJson.EnvironmentJson.ItemsElementJson
+                        {
+                            Value = "Development",
+                            Text = "Development"
+                        });
+                    /* NO DOCUMENTATION FOUND FOR QA environment
+                    page.Settings.Environment.Items.Add(
+                        new AppSettingsPage.SettingsJson.EnvironmentJson.ItemsElementJson
+                        {
+                            Value = "Qa",
+                            Text = "Qa"
+                        });
+                        */
+                    page.Settings.Environment.Items.Add(
+                        new AppSettingsPage.SettingsJson.EnvironmentJson.ItemsElementJson
                         {
                             Value = "Production",
                             Text = "Production"
@@ -81,7 +86,7 @@ namespace BraintreeWrapper.Api
 
                     if (settings != null)
                     {
-                        page.Settings.Enviroment.Selected = settings.Enviroment;
+                        page.Settings.Environment.Selected = settings.Environment;
                         page.Settings.MerchantId = settings.MerchantId;
                         page.Settings.PrivateKey = settings.PrivateKey;
                         page.Settings.PublicKey = settings.PublicKey;
@@ -95,9 +100,9 @@ namespace BraintreeWrapper.Api
         }
         private void RegisterMapperHandlers()
         {
-            UriMapping.Map("/braintreewrapper/settings", UriMapping.MappingUriPrefix + "/settings");
-            UriMapping.Map("/braintreewrapper/menu", UriMapping.MappingUriPrefix + "/menu");
-            UriMapping.Map("/braintreewrapper/app-name", UriMapping.MappingUriPrefix + "/app-name");
+            Blender.MapUri("/braintreewrapper/settings", "settings");
+            Blender.MapUri("/braintreewrapper/menu", "menu");
+            Blender.MapUri("/braintreewrapper/app-name", "app-name");
         }
     }
 }

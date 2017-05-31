@@ -2,7 +2,7 @@ using Starcounter;
 
 namespace BraintreeWrapper.ViewModels
 {
-    public partial class RootPage : Page
+    public partial class RootPage : Json
     {
 
     }

@@ -1,5 +1,5 @@
 {
     "name": "BrainTreeWrapper",
-    "description": "BrainTreeWrapper",
-    "html": "/braintreewrapper/AppIconPage.html"
+    "description": "A BrainTree wrapper for Starcounter",
+    "html": "/braintreewrapper/views/AppIconPage.html"
 }

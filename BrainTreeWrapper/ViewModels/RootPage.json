@@ -1,4 +1,4 @@
 {
-    "Html": "/braintreewrapper/LauncherWrapperPage.html",
+    "Html": "/BraintreeWrapper/views/RootPage.html",
     "CurrentPage": { }
 }
